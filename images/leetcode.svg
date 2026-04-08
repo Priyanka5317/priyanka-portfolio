@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260">
+<rect width="400" height="260" fill="#111111"/>
+<rect width="400" height="30" fill="#1a1a1a"/>
+<circle cx="15" cy="15" r="5" fill="#ff5f56"/>
+<circle cx="32" cy="15" r="5" fill="#ffbd2e"/>
+<circle cx="49" cy="15" r="5" fill="#27c93f"/>
+<text x="200" y="19" text-anchor="middle" font-family="monospace" font-size="11" fill="#666">LeetCode</text>
+<text x="40" y="80" font-family="monospace" font-size="14" fill="#eab308" opacity="0.7">{</text><text x="60" y="102" font-family="monospace" font-size="14" fill="#eab308" opacity="0.7">  function solve(nums) {</text><text x="80" y="124" font-family="monospace" font-size="14" fill="#eab308" opacity="0.7">    let map = new Map();</text><text x="80" y="146" font-family="monospace" font-size="14" fill="#eab308" opacity="0.7">    for (let i = 0; i < n; i++)</text><text x="100" y="168" font-family="monospace" font-size="14" fill="#eab308" opacity="0.7">      return result;</text><text x="60" y="190" font-family="monospace" font-size="14" fill="#eab308" opacity="0.7">  }</text><text x="40" y="212" font-family="monospace" font-size="14" fill="#eab308" opacity="0.7">}</text>
+<text x="20" y="245" font-family="monospace" font-size="10" fill="#666">$ analyze --dataset leetcode</text>
+</svg>

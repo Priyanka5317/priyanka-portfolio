@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Priyanka Mangrulkar — Data Analyst & BI Developer</title>
+<meta name="description" content="Priyanka Mangrulkar — Data Analyst, Data Scientist, and BI Developer based in Boston." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        colors: {
+          bg: '#fafaf9',
+          card: '#ffffff',
+          border: '#e7e5e4',
+          ink: '#1c1917',
+          muted: '#78716c',
+          accent: '#6d28d9',
+          accent2: '#ec4899',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background: #fafaf9;
+    color: #1c1917;
+    font-family: 'Inter', sans-serif;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(109, 40, 217, 0.08), transparent 40%),
+      radial-gradient(circle at 85% 40%, rgba(236, 72, 153, 0.06), transparent 40%);
+  }
+  .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .project-card { transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .project-card:hover { transform: translateY(-6px); border-color: #6d28d9; box-shadow: 0 20px 40px -20px rgba(109, 40, 217, 0.25); }
+  .grad-text {
+    background: linear-gradient(135deg, #6d28d9 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, #6d28d9, #ec4899);
+    transition: width 0.3s;
+  }
+  .nav-link:hover::after { width: 100%; }
+  .skill-pill { transition: all 0.3s; }
+  .skill-pill:hover {
+    background: #6d28d9;
+    color: #fff;
+    border-color: #6d28d9;
+    transform: translateY(-2px);
+  }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #f5f5f4; }
+  ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: #6d28d9; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  .float { animation: float 4s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .cursor { animation: blink 1s infinite; }
+
+  /* Timeline */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #6d28d9, #ec4899, transparent);
+  }
+  @media (min-width: 768px) {
+    .timeline::before { left: 50%; transform: translateX(-50%); }
+    .tl-item { width: 50%; }
+    .tl-item.left { padding-right: 3rem; text-align: right; }
+    .tl-item.right { margin-left: 50%; padding-left: 3rem; }
+    .tl-item.left .tl-dot { right: -9px; left: auto; }
+    .tl-item.right .tl-dot { left: -9px; }
+  }
+  .tl-item { position: relative; padding-left: 3.5rem; margin-bottom: 3rem; }
+  .tl-dot {
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    width: 18px; height: 18px;
+    background: #fff;
+    border: 3px solid #6d28d9;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.15);
+    z-index: 2;
+  }
+  @media (min-width: 768px) {
+    .tl-item { padding-left: 0; }
+  }
+
+  .stat-bubble {
+    background: linear-gradient(135deg, rgba(109, 40, 217, 0.1), rgba(236, 72, 153, 0.1));
+    border: 1px solid rgba(109, 40, 217, 0.2);
+  }
+
+  .psi-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-bg/80 border-b border-border">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="#home" class="font-mono font-bold text-lg grad-text">priyanka.m</a>
+    <div class="hidden md:flex gap-8 text-sm text-muted">
+      <a href="#about" class="nav-link hover:text-ink">About</a>
+      <a href="#experience" class="nav-link hover:text-ink">Experience</a>
+      <a href="#projects" class="nav-link hover:text-ink">Projects</a>
+      <a href="#skills" class="nav-link hover:text-ink">Skills</a>
+      <a href="#contact" class="nav-link hover:text-ink">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="min-h-screen flex items-center px-6 pt-20">
+  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-12 items-center">
+    <div class="md:col-span-2">
+      <p class="font-mono text-accent text-sm mb-4 fade-up">$ hello_world.py</p>
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 fade-up leading-tight">
+        Hi, I'm <span class="grad-text">Priyanka</span><span class="text-accent cursor">_</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-ink mb-2 fade-up font-medium">Data Analyst · Data Scientist · BI Developer</p>
+      <p class="text-muted mb-8 fade-up max-w-xl">Boston-based graduate student at Northeastern, turning messy data into clear stories and actionable decisions.</p>
+      <div class="flex flex-wrap gap-4 fade-up">
+        <a href="#projects" class="px-6 py-3 bg-gradient-to-r from-accent to-accent2 text-white font-medium rounded-full hover:shadow-lg hover:shadow-accent/30 transition">View My Work</a>
+        <a href="assets/Priyanka_Mangrulkar_Resume.pdf" target="_blank" class="px-6 py-3 border-2 border-accent text-accent rounded-full hover:bg-accent hover:text-white transition font-medium">Download Resume</a>
+        <a href="#contact" class="px-6 py-3 border border-border rounded-full hover:border-accent transition">Get in Touch</a>
+      </div>
+    </div>
+    <div class="flex justify-center fade-up">
+      <div class="relative float">
+        <div class="absolute -inset-4 bg-gradient-to-br from-accent to-accent2 blur-2xl opacity-30 rounded-full"></div>
+        <img src="images/profile.jpg" onerror="this.src='images/profile.svg'" alt="Priyanka Mangrulkar" class="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-white shadow-2xl"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">01.</span> About Me</h2>
+    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-10 fade-up"></div>
+    <div class="grid md:grid-cols-3 gap-10 fade-up">
+      <div class="md:col-span-2 space-y-4 text-ink leading-relaxed">
+        <p>I'm a data professional passionate about transforming raw, messy data into clear insights that drive real business decisions. Currently pursuing my <span class="text-accent font-semibold">M.S. in Information Systems at Northeastern University</span>, I bridge the gap between engineering rigor and business storytelling.</p>
+        <p>With hands-on experience building ETL pipelines, designing data warehouses, and crafting dashboards in Power BI and Tableau, I enjoy the full analytics lifecycle — from data wrangling and modeling to delivering executive-ready insights.</p>
+        <p>Previously, I worked as a <span class="text-accent font-semibold">Data Science Co-op at WhoozCooking</span> and as a Research Analyst at Team Maverick, where I built predictive models and interactive dashboards that improved performance metrics by up to 50%. I'm actively seeking full-time roles in <span class="text-accent font-semibold">Data Analytics, Data Engineering, Data Science, and BI Development</span>.</p>
+      </div>
+      <div class="space-y-3 text-sm">
+        <div class="p-5 bg-card border border-border rounded-xl shadow-sm">
+          <p class="text-muted text-xs font-mono mb-1">EDUCATION</p>
+          <p class="text-ink font-semibold">M.S. Information Systems</p>
+          <p class="text-muted">Northeastern University</p>
+          <p class="text-muted text-xs mt-1">Expected May 2026</p>
+        </div>
+        <div class="p-5 bg-card border border-border rounded-xl shadow-sm">
+          <p class="text-muted text-xs font-mono mb-1">LOCATION</p>
+          <p class="text-ink font-semibold">Boston, MA</p>
+        </div>
+        <div class="p-5 bg-card border border-border rounded-xl shadow-sm">
+          <p class="text-muted text-xs font-mono mb-1">OPEN TO</p>
+          <p class="text-ink font-semibold">Full-time · 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE (Timeline) -->
+<section id="experience" class="py-24 px-6 bg-gradient-to-b from-transparent via-white/50 to-transparent">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">02.</span> Experience & Education</h2>
+    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-12 fade-up"></div>
+
+    <div class="timeline" id="timeline">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">03.</span> Featured Projects</h2>
+    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-4 fade-up"></div>
+    <p class="text-muted mb-10 fade-up">Every project broken down into <span class="text-accent font-semibold">The Problem</span>, <span class="text-accent font-semibold">The Solution</span>, and <span class="text-accent font-semibold">The Impact</span>.</p>
+    <div class="grid md:grid-cols-2 gap-6" id="projects-grid"></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24 px-6 bg-gradient-to-b from-transparent via-white/50 to-transparent">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">04.</span> Skills & Tools</h2>
+    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-10 fade-up"></div>
+    <div class="grid md:grid-cols-2 gap-8 fade-up">
+      <div>
+        <h3 class="text-accent font-mono text-sm mb-3 font-semibold">LANGUAGES & TOOLS</h3>
+        <div class="flex flex-wrap gap-2" id="skills-lang"></div>
+      </div>
+      <div>
+        <h3 class="text-accent font-mono text-sm mb-3 font-semibold">DATA & ML</h3>
+        <div class="flex flex-wrap gap-2" id="skills-ml"></div>
+      </div>
+      <div>
+        <h3 class="text-accent font-mono text-sm mb-3 font-semibold">BI & VISUALIZATION</h3>
+        <div class="flex flex-wrap gap-2" id="skills-bi"></div>
+      </div>
+      <div>
+        <h3 class="text-accent font-mono text-sm mb-3 font-semibold">DATABASES & CLOUD</h3>
+        <div class="flex flex-wrap gap-2" id="skills-db"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-32 px-6 text-center">
+  <div class="max-w-2xl mx-auto">
+    <p class="font-mono text-accent text-sm mb-4 fade-up">$ let's_connect.sh</p>
+    <h2 class="text-4xl md:text-5xl font-bold mb-6 fade-up">Let's <span class="grad-text">work together</span></h2>
+    <p class="text-muted mb-10 fade-up">I'm currently looking for full-time opportunities in Data Analytics, Engineering, Science, and BI. My inbox is always open — feel free to reach out!</p>
+    <div class="flex flex-wrap justify-center gap-4 fade-up">
+      <a href="mailto:mangrulkarp@northeastern.edu" class="px-6 py-3 bg-gradient-to-r from-accent to-accent2 text-white font-medium rounded-full hover:shadow-lg hover:shadow-accent/30 transition">Say Hello</a>
+      <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="px-6 py-3 border border-border bg-card rounded-full hover:border-accent transition">LinkedIn</a>
+      <a href="https://github.com/Priyanka5317/" target="_blank" class="px-6 py-3 border border-border bg-card rounded-full hover:border-accent transition">GitHub</a>
+      <a href="assets/Priyanka_Mangrulkar_Resume.pdf" target="_blank" class="px-6 py-3 border border-border bg-card rounded-full hover:border-accent transition">Resume</a>
+    </div>
+  </div>
+</section>
+
+<footer class="py-8 px-6 text-center text-muted text-xs font-mono border-t border-border">
+  <p>Designed & built by Priyanka Mangrulkar · © 2026</p>
+</footer>
+
+<script>
+// ============ TIMELINE ============
+const timeline = [
+  {
+    side: 'right',
+    date: 'May 2026',
+    title: 'M.S. Information Systems',
+    org: 'Northeastern University · Boston, MA',
+    type: 'education',
+    desc: 'Data Management, Database Design, Data Structures, Data Science with Python.'
+  },
+  {
+    side: 'left',
+    date: 'May 2025 — Dec 2025',
+    title: 'Data Science Co-op',
+    org: 'WhoozCooking · Boston, MA',
+    type: 'work',
+    desc: 'Built ETL pipelines (Python, AWS Glue, Airflow), Redshift star schemas, and Power BI dashboards tracking retention, onboarding, and KPIs. Ran A/B tests and churn analysis.'
+  },
+  {
+    side: 'right',
+    date: 'Aug 2019 — Aug 2023',
+    title: 'B.E. Electronics & Telecommunication',
+    org: 'Savitribai Phule Pune University · India',
+    type: 'education',
+    desc: 'Patent: "Pulse Diagnosis System for Chronic Diseases" (India, 2023).'
+  },
+  {
+    side: 'left',
+    date: 'Apr 2021 — Apr 2022',
+    title: 'Research Analyst',
+    org: 'Team Maverick · Pune, India',
+    type: 'work',
+    desc: 'Improved avionics accuracy by 20% analyzing telemetry with Python & MATLAB. Built predictive models and Tableau dashboards for system diagnostics.'
+  },
+];
+
+const tl = document.getElementById('timeline');
+timeline.forEach(item => {
+  const div = document.createElement('div');
+  div.className = `tl-item ${item.side} fade-up`;
+  const icon = item.type === 'work'
+    ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>'
+    : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>';
+  div.innerHTML = `
+    <span class="tl-dot"></span>
+    <div class="bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-lg hover:border-accent transition">
+      <div class="flex items-center gap-2 mb-2 ${item.side === 'left' ? 'md:justify-end' : ''}">
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-mono text-accent bg-accent/10">${icon}${item.type}</span>
+        <span class="font-mono text-xs text-muted">${item.date}</span>
+      </div>
+      <h3 class="font-semibold text-ink text-lg">${item.title}</h3>
+      <p class="text-accent text-sm mb-2">${item.org}</p>
+      <p class="text-muted text-sm">${item.desc}</p>
+    </div>
+  `;
+  tl.appendChild(div);
+});
+
+// ============ PROJECTS ============
+const projects = [
+  {
+    title: "PodcastIQ",
+    img: "images/podcastiq.svg",
+    problem: "Podcast platforms struggle to understand why listeners drop off or which episodes drive engagement.",
+    solution: "Built an analytics pipeline ingesting listening data, applying NLP to transcripts, and surfacing engagement signals through interactive dashboards.",
+    impact: "Surfaced episode-level retention insights that can inform content and recommendation strategy.",
+    tags: ["Python","NLP","Analytics"],
+    github: "https://github.com/Priyanka5317/PodcastIQ"
+  },
+  {
+    title: "WhoozCooking API",
+    img: "images/whoozcooking.svg",
+    problem: "Analytics and product teams lacked a unified backend for querying user, onboarding, and engagement data.",
+    solution: "Engineered a Python-based API and ETL workflows feeding a Redshift warehouse, exposing clean endpoints for dashboards and reporting.",
+    impact: "Reduced data processing time by 50% and unlocked faster, self-serve analytics across the organization.",
+    tags: ["Python","API","ETL","AWS"],
+    github: "https://github.com/Priyanka5317/WhoozCookingAPI"
+  },
+  {
+    title: "F1 Tire Strategy Analysis",
+    img: "images/f1.svg",
+    problem: "F1 race teams need to balance grip vs. durability — a wrong tire call can cost the race.",
+    solution: "Built an R Shiny app merging lap and weather data, applying Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.",
+    impact: "Improved pit strategy success rate by 25% and enabled real-time tactical decisions through interactive simulation.",
+    tags: ["R","Shiny","Survival Analysis"],
+    github: "https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing"
+  },
+  {
+    title: "Employee Retention Analysis",
+    img: "images/employee.svg",
+    problem: "HR teams lacked early warning signals for attrition across tenure and departments.",
+    solution: "Wrote nested SQL queries and CTEs to uncover churn patterns, built stored procedures for ongoing monitoring, and designed dashboards for HR stakeholders.",
+    impact: "Improved early-warning attrition signals by 20%, enabling targeted retention interventions.",
+    tags: ["SQL","HR Analytics","Dashboards"],
+    github: "https://github.com/Priyanka5317/Employee-Analysis"
+  },
+  {
+    title: "E-Commerce Database & Analytics",
+    img: "images/ecommerce.svg",
+    problem: "An e-commerce dataset had slow queries and no real-time reporting for sales and inventory.",
+    solution: "Designed a 15+ table normalized MySQL warehouse with indexing, partitioning, triggers, and stored procedures — connected to Power BI dashboards.",
+    impact: "Optimized queries by 50% and boosted reporting efficiency by 25%, powering real-time revenue and inventory insights.",
+    tags: ["MySQL","Power BI","ETL"],
+    github: "https://github.com/Priyanka5317/"
+  },
+  {
+    title: "Pulse Diagnosis System (Patent)",
+    img: "images/pulse.svg",
+    problem: "Early detection of chronic diseases often requires expensive, invasive testing.",
+    solution: "Built a non-invasive IR-sensor system on Arduino UNO, capturing 1,000+ pulse datasets and developing C/C++ signal-processing algorithms for feature extraction.",
+    impact: "Achieved >90% diagnostic accuracy and secured an Indian Patent (No. 202321031953, 2023).",
+    tags: ["C/C++","Signal Processing","Arduino"],
+    github: "https://github.com/Priyanka5317/"
+  },
+  {
+    title: "Sleep Aid Sentiment Analysis",
+    img: "images/sleep.svg",
+    problem: "Sleep aid marketers lacked visibility into what customers actually valued in product reviews.",
+    solution: "Analyzed 10,000+ Walmart reviews with Pandas, n-grams, and TextBlob sentiment scoring, then visualized trends in Power BI.",
+    impact: "Revealed a 15% higher preference for 10mg doses and elevated review insight quality by 40%, guiding marketing strategy.",
+    tags: ["Python","NLP","Power BI"],
+    github: "https://github.com/Priyanka5317/"
+  },
+  {
+    title: "LeetCode Solutions",
+    img: "images/leetcode.svg",
+    problem: "Staying sharp on data structures and algorithms requires consistent, deliberate practice.",
+    solution: "Maintaining an ongoing repository of LeetCode solutions, organized by topic and difficulty with clean, documented code.",
+    impact: "Built a durable personal reference of 100+ DSA patterns strengthening technical interview readiness.",
+    tags: ["Python","DSA"],
+    github: "https://github.com/Priyanka5317/leetcode"
+  }
+];
+
+const grid = document.getElementById('projects-grid');
+projects.forEach((p) => {
+  const el = document.createElement('a');
+  el.href = p.github;
+  el.target = '_blank';
+  el.className = 'project-card fade-up block bg-card border border-border rounded-2xl overflow-hidden shadow-sm';
+  el.innerHTML = `
+    <div class="aspect-[400/220] bg-stone-100 overflow-hidden border-b border-border">
+      <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover"/>
+    </div>
+    <div class="p-6">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-xl font-bold text-ink">${p.title}</h3>
+        <svg class="w-5 h-5 text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </div>
+      <div class="space-y-3 mb-4">
+        <div>
+          <p class="psi-label text-accent mb-1">◆ The Problem</p>
+          <p class="text-sm text-ink/80">${p.problem}</p>
+        </div>
+        <div>
+          <p class="psi-label text-accent2 mb-1">◆ The Solution</p>
+          <p class="text-sm text-ink/80">${p.solution}</p>
+        </div>
+        <div>
+          <p class="psi-label mb-1" style="color:#059669">◆ The Impact</p>
+          <p class="text-sm text-ink/80">${p.impact}</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2 pt-3 border-t border-border">
+        ${p.tags.map(t => `<span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-mono text-xs">${t}</span>`).join('')}
+      </div>
+    </div>
+  `;
+  grid.appendChild(el);
+});
+
+// ============ SKILLS ============
+const skills = {
+  lang: ["Python", "R", "SQL", "C/C++", "MATLAB", "Git"],
+  ml: ["Pandas", "NumPy", "Scikit-learn", "Survival Analysis", "Logistic Regression", "Sentiment Analysis", "Predictive Modeling"],
+  bi: ["Power BI", "Tableau", "TIBCO Spotfire", "Looker", "ggplot2", "Seaborn", "Matplotlib", "Excel"],
+  db: ["MySQL", "MS SQL Server", "Oracle", "Redshift", "AWS Glue", "Airflow", "Hadoop", "Apache Avro"]
+};
+Object.entries(skills).forEach(([k, arr]) => {
+  const c = document.getElementById('skills-' + k);
+  arr.forEach(s => {
+    const span = document.createElement('span');
+    span.className = 'skill-pill px-3 py-1.5 bg-card border border-border rounded-full text-xs text-ink cursor-default font-medium';
+    span.textContent = s;
+    c.appendChild(span);
+  });
+});
+
+// ============ SCROLL REVEAL ============
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
