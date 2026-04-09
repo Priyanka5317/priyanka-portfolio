@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260">
+<rect width="400" height="260" fill="#111111"/>
+<rect width="400" height="30" fill="#1a1a1a"/>
+<circle cx="15" cy="15" r="5" fill="#ff5f56"/>
+<circle cx="32" cy="15" r="5" fill="#ffbd2e"/>
+<circle cx="49" cy="15" r="5" fill="#27c93f"/>
+<text x="200" y="19" text-anchor="middle" font-family="monospace" font-size="11" fill="#666">F1 Tire Strategy</text>
+<polyline points="40,200 90,150 140,170 190,100 240,130 290,70 340,110 390,60" fill="none" stroke="#ef4444" stroke-width="3"/><circle cx="40" cy="200" r="5" fill="#ef4444"/><circle cx="90" cy="150" r="5" fill="#ef4444"/><circle cx="140" cy="170" r="5" fill="#ef4444"/><circle cx="190" cy="100" r="5" fill="#ef4444"/><circle cx="240" cy="130" r="5" fill="#ef4444"/><circle cx="290" cy="70" r="5" fill="#ef4444"/><circle cx="340" cy="110" r="5" fill="#ef4444"/><circle cx="390" cy="60" r="5" fill="#ef4444"/>
+<text x="20" y="245" font-family="monospace" font-size="10" fill="#666">$ analyze --dataset f1</text>
+</svg>
