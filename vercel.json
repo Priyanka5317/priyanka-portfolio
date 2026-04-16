@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/ref/:company", "destination": "/" }
+  ]
+}
