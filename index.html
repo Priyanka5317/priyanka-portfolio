@@ -23,13 +23,13 @@
         colors: {
           bg: '#06081a',
           card: '#0c1029',
-          border: '#1a2040',
+          border: '#1a2044',
           ink: '#e8eaf6',
           muted: '#7b85a4',
-          accent: '#e10600',
-          accent2: '#1e41ff',
+          accent: '#2350d9',
+          accent2: '#e10600',
           navy: '#0a1030',
-          gold: '#d4a200',
+          gold: '#c8a200',
         }
       }
     }
@@ -44,30 +44,30 @@
     overflow-x: hidden;
   }
 
-  /* Deep carbon fiber */
+  /* Deep carbon fiber - blue tint */
   .carbon-bg {
     background-image:
-      radial-gradient(circle at 1px 1px, rgba(225,6,0,0.02) 1px, transparent 0),
+      radial-gradient(circle at 1px 1px, rgba(35,80,217,0.03) 1px, transparent 0),
       linear-gradient(180deg, #06081a 0%, #0a1030 50%, #06081a 100%);
     background-size: 20px 20px, 100% 100%;
   }
 
-  /* Grid lines - subtle blue tint */
+  /* Grid lines - blue tint */
   .grid-lines {
     background-image:
-      linear-gradient(rgba(30,65,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(30,65,255,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(35,80,217,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(35,80,217,0.05) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
-  /* Racing stripe - RB22 red */
+  /* Racing stripe - blue to red */
   .racing-stripe { position: relative; }
   .racing-stripe::before {
     content: '';
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 4px;
-    background: linear-gradient(180deg, #e10600, #1e41ff);
+    background: linear-gradient(180deg, #2350d9, #e10600);
   }
 
   .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
@@ -76,12 +76,12 @@
   .project-card { transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
   .project-card:hover {
     transform: translateY(-6px) scale(1.01);
-    border-color: #e10600;
-    box-shadow: 0 20px 60px -20px rgba(225, 6, 0, 0.3);
+    border-color: #2350d9;
+    box-shadow: 0 20px 60px -20px rgba(35, 80, 217, 0.35);
   }
 
-  .glow-red { text-shadow: 0 0 40px rgba(225, 6, 0, 0.5); }
-  .glow-blue { text-shadow: 0 0 40px rgba(30, 65, 255, 0.5); }
+  .glow-blue { text-shadow: 0 0 40px rgba(35, 80, 217, 0.5); }
+  .glow-red { text-shadow: 0 0 30px rgba(225, 6, 0, 0.4); }
 
   .nav-link { position: relative; }
   .nav-link::after {
@@ -89,24 +89,24 @@
     position: absolute;
     bottom: -4px; left: 0;
     width: 0; height: 2px;
-    background: #e10600;
+    background: linear-gradient(90deg, #2350d9, #e10600);
     transition: width 0.3s;
   }
   .nav-link:hover::after { width: 100%; }
 
   .skill-pill { transition: all 0.3s; }
   .skill-pill:hover {
-    background: #e10600;
+    background: #2350d9;
     color: #fff;
-    border-color: #e10600;
+    border-color: #2350d9;
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(225, 6, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(35, 80, 217, 0.3);
   }
 
   ::-webkit-scrollbar { width: 8px; }
   ::-webkit-scrollbar-track { background: #06081a; }
-  ::-webkit-scrollbar-thumb { background: #1a2040; border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: #e10600; }
+  ::-webkit-scrollbar-thumb { background: #1a2044; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2350d9; }
 
   /* Start lights animation */
   @keyframes lightOn {
@@ -116,10 +116,6 @@
   @keyframes lightOff {
     0% { background: #e10600; box-shadow: 0 0 30px #e10600; }
     100% { background: #1a1a2e; box-shadow: none; }
-  }
-  @keyframes lightGo {
-    0% { background: #1a1a2e; }
-    100% { background: #22c55e; box-shadow: 0 0 40px #22c55e; }
   }
   .start-light {
     width: 28px; height: 28px;
@@ -147,10 +143,10 @@
   /* Checkered pattern */
   .checkered {
     background-image:
-      linear-gradient(45deg, #1a2040 25%, transparent 25%),
-      linear-gradient(-45deg, #1a2040 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #1a2040 75%),
-      linear-gradient(-45deg, transparent 75%, #1a2040 75%);
+      linear-gradient(45deg, #1a2044 25%, transparent 25%),
+      linear-gradient(-45deg, #1a2044 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #1a2044 75%),
+      linear-gradient(-45deg, transparent 75%, #1a2044 75%);
     background-size: 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   }
@@ -163,7 +159,7 @@
     left: 20px;
     top: 0; bottom: 0;
     width: 3px;
-    background: linear-gradient(to bottom, #e10600, #1e41ff, transparent);
+    background: linear-gradient(to bottom, #2350d9, #e10600, transparent);
   }
   @media (min-width: 768px) {
     .timeline::before { left: 50%; transform: translateX(-50%); }
@@ -179,10 +175,10 @@
     left: 11px;
     top: 8px;
     width: 22px; height: 22px;
-    background: #e10600;
+    background: #2350d9;
     border-radius: 50%;
     border: 3px solid #06081a;
-    box-shadow: 0 0 0 3px #e10600, 0 0 15px rgba(225, 6, 0, 0.4);
+    box-shadow: 0 0 0 3px #2350d9, 0 0 15px rgba(35, 80, 217, 0.4);
     z-index: 2;
   }
   @media (min-width: 768px) {
@@ -207,13 +203,13 @@
       90deg,
       transparent,
       transparent 98%,
-      rgba(225, 6, 0, 0.03) 98%,
-      rgba(225, 6, 0, 0.03) 100%
+      rgba(35, 80, 217, 0.03) 98%,
+      rgba(35, 80, 217, 0.03) 100%
     );
     pointer-events: none;
   }
 
-  /* RPM meter - RB22 red dominant */
+  /* RPM meter - blue dominant with red tip */
   @keyframes rpm {
     0% { width: 15%; }
     50% { width: 85%; }
@@ -221,7 +217,7 @@
   }
   .rpm-bar {
     height: 3px;
-    background: linear-gradient(90deg, #1e41ff, #e10600, #e10600);
+    background: linear-gradient(90deg, #2350d9, #2350d9, #e10600);
     animation: rpm 3s ease-in-out infinite;
     border-radius: 2px;
   }
@@ -230,95 +226,64 @@
     font-family: 'Orbitron', sans-serif;
     font-weight: 900;
     font-size: 0.9rem;
-    background: linear-gradient(135deg, #e10600, #1e41ff);
+    background: linear-gradient(135deg, #2350d9, #e10600);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* ===================== */
-  /* F1 CAR ANIMATIONS     */
-  /* ===================== */
+  /* =============================== */
+  /*  F1 CAR ANIMATIONS - VISIBLE    */
+  /* =============================== */
 
-  /* F1 car SVG as inline background */
-  .f1-car-track {
+  .car-track {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0; left: 0;
     pointer-events: none;
     overflow: hidden;
-    z-index: 0;
+    z-index: 1;
   }
 
   /* Car moving left to right */
   @keyframes driveRight {
-    0% { transform: translateX(-120px); opacity: 0; }
-    5% { opacity: 0.12; }
-    90% { opacity: 0.12; }
-    100% { transform: translateX(calc(100vw + 120px)); opacity: 0; }
+    0%   { transform: translateX(-200px); }
+    100% { transform: translateX(calc(100vw + 200px)); }
   }
 
-  /* Car moving right to left */
+  /* Car moving right to left (flipped) */
   @keyframes driveLeft {
-    0% { transform: translateX(calc(100vw + 120px)) scaleX(-1); opacity: 0; }
-    5% { opacity: 0.08; }
-    90% { opacity: 0.08; }
-    100% { transform: translateX(-120px) scaleX(-1); opacity: 0; }
+    0%   { transform: translateX(calc(100vw + 200px)) scaleX(-1); }
+    100% { transform: translateX(-200px) scaleX(-1); }
   }
 
-  .f1-car {
+  .rb-car {
     position: absolute;
-    width: 100px;
-    height: 30px;
-    opacity: 0;
-  }
-  .f1-car.right {
-    animation: driveRight 12s linear infinite;
-  }
-  .f1-car.left {
-    animation: driveLeft 15s linear infinite;
-  }
-  .f1-car.car-1 { top: 30%; animation-delay: 0s; animation-duration: 10s; }
-  .f1-car.car-2 { top: 65%; animation-delay: 4s; animation-duration: 14s; }
-  .f1-car.car-3 { top: 45%; animation-delay: 7s; animation-duration: 11s; }
-  .f1-car.car-hero { top: 75%; animation-delay: 6s; animation-duration: 8s; }
-
-  /* Trailing speed lines behind cars */
-  @keyframes speedStreak {
-    0% { width: 0; opacity: 0; }
-    30% { opacity: 0.15; }
-    100% { width: 200px; opacity: 0; }
-  }
-
-  /* Ambient track marks */
-  .track-line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(225,6,0,0.08), transparent);
     pointer-events: none;
   }
 
+  /* Speed streak trailing the car */
   @keyframes streakMove {
     0% { transform: translateX(-100%); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
     100% { transform: translateX(100vw); opacity: 0; }
   }
   .streak {
     position: absolute;
     height: 1px;
-    width: 120px;
+    width: 180px;
     pointer-events: none;
     opacity: 0;
   }
-  .streak-red {
-    background: linear-gradient(90deg, transparent, #e10600, transparent);
-    animation: streakMove 4s linear infinite;
-  }
   .streak-blue {
-    background: linear-gradient(90deg, transparent, #1e41ff, transparent);
+    background: linear-gradient(90deg, transparent, rgba(35,80,217,0.25), transparent);
     animation: streakMove 5s linear infinite;
+  }
+  .streak-red {
+    background: linear-gradient(90deg, transparent, rgba(225,6,0,0.15), transparent);
+    animation: streakMove 6s linear infinite;
   }
 </style>
 </head>
@@ -327,12 +292,12 @@
 <!-- NAV -->
 <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-bg/80 border-b border-border">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="#home" class="font-race font-bold text-lg text-accent tracking-wider">P.MANGRULKAR</a>
+    <a href="#home" class="font-race font-bold text-lg tracking-wider" style="background:linear-gradient(90deg,#2350d9,#e10600);-webkit-background-clip:text;background-clip:text;color:transparent;">P.MANGRULKAR</a>
     <div class="hidden md:flex gap-8 text-sm text-muted font-mono uppercase tracking-wider">
       <a href="#about" class="nav-link hover:text-accent">About</a>
-      <a href="#experience" class="nav-link hover:text-accent">Career</a>
+      <a href="#experience" class="nav-link hover:text-accent">Experience</a>
       <a href="#projects" class="nav-link hover:text-accent">Projects</a>
-      <a href="#skills" class="nav-link hover:text-accent">Tech</a>
+      <a href="#skills" class="nav-link hover:text-accent">Skills</a>
       <a href="#certifications" class="nav-link hover:text-accent">Certs</a>
       <a href="#contact" class="nav-link hover:text-accent">Contact</a>
     </div>
@@ -342,20 +307,36 @@
 
 <!-- HERO -->
 <section id="home" class="min-h-screen flex items-center px-6 pt-20 grid-lines relative">
-  <!-- Ambient speed streaks -->
-  <div class="f1-car-track">
-    <div class="streak streak-red" style="top:25%; animation-delay:0s;"></div>
-    <div class="streak streak-blue" style="top:55%; animation-delay:2s;"></div>
-    <div class="streak streak-red" style="top:80%; animation-delay:3.5s;"></div>
+  <!-- Speed streaks ambient -->
+  <div class="car-track">
+    <div class="streak streak-blue" style="top:28%; animation-delay:0s;"></div>
+    <div class="streak streak-red" style="top:62%; animation-delay:2.5s;"></div>
+    <div class="streak streak-blue" style="top:82%; animation-delay:4s;"></div>
   </div>
-  <!-- F1 car crossing hero -->
-  <div class="f1-car-track">
-    <svg class="f1-car right car-hero" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 22 L15 22 L18 18 L30 16 L45 14 L55 10 L72 9 L85 10 L92 14 L95 18 L95 22 L5 22Z" fill="#e10600" opacity="0.9"/>
-      <circle cx="22" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <circle cx="80" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <rect x="55" y="11" width="20" height="6" rx="1" fill="#1e41ff" opacity="0.7"/>
-      <rect x="30" y="15" width="15" height="4" rx="1" fill="#06081a" opacity="0.5"/>
+
+  <!-- RB22 car crossing hero -->
+  <div class="car-track">
+    <svg class="rb-car" style="top:72%; width:160px; height:50px; animation: driveRight 9s linear 6s infinite;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
+      <!-- RB22 body - navy blue dominant -->
+      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
+      <!-- Red accent stripe -->
+      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600"/>
+      <!-- Cockpit -->
+      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a"/>
+      <!-- Front wing -->
+      <path d="M8 36 L3 34 L3 38 L20 38 L20 36Z" fill="#1a2d6b"/>
+      <rect x="3" y="33" width="18" height="2" fill="#e10600" opacity="0.8"/>
+      <!-- Rear wing -->
+      <rect x="140" y="12" width="16" height="3" rx="1" fill="#1a2d6b"/>
+      <rect x="140" y="16" width="16" height="2" fill="#e10600" opacity="0.7"/>
+      <rect x="147" y="16" width="3" height="20" fill="#1a2d6b" opacity="0.6"/>
+      <!-- Tires -->
+      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
+      <ellipse cx="32" cy="39" rx="5" ry="5" fill="#444"/>
+      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
+      <ellipse cx="130" cy="39" rx="5" ry="5" fill="#444"/>
+      <!-- Small gold number -->
+      <text x="95" y="27" font-family="sans-serif" font-size="7" fill="#c8a200" font-weight="bold">1</text>
     </svg>
   </div>
 
@@ -373,11 +354,11 @@
       <p class="font-race text-accent text-xs tracking-[0.3em] mb-4 fade-up uppercase">// Lights out and away we go</p>
       <h1 class="text-5xl md:text-7xl font-race font-black tracking-tight mb-4 fade-up leading-tight">
         <span class="text-white">PRIYANKA</span><br/>
-        <span class="text-accent glow-red">MANGRULKAR</span><span class="text-accent2 cursor-blink">_</span>
+        <span class="text-accent glow-blue">MANGRULKAR</span><span class="text-accent2 cursor-blink">_</span>
       </h1>
       <p class="text-xl md:text-2xl text-ink mb-2 fade-up font-semibold">AI Engineer · Data Analyst · Data Scientist</p>
       <p class="text-muted mb-1 fade-up font-medium text-sm">Data Engineer · Business Analyst · BI Developer</p>
-      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based engineer at the intersection of AI and data — building intelligent systems, crunching telemetry, and turning raw signals into race-winning decisions.</p>
+      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based engineer at the intersection of AI and data — building intelligent systems, wrangling complex datasets, and turning raw signals into actionable insights.</p>
 
       <!-- Badges -->
       <div class="flex flex-wrap gap-2 mb-6 fade-up">
@@ -387,13 +368,13 @@
         </span>
         <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-500/10 border border-green-500/30 rounded text-xs font-race text-green-400 tracking-wider">
           <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse inline-block"></span>
-          P1 · OPEN TO WORK
+          OPEN TO WORK
         </span>
       </div>
 
       <div class="flex flex-wrap gap-4 fade-up">
-        <a href="#projects" class="px-6 py-3 bg-accent text-white font-race font-bold text-sm tracking-wider rounded hover:bg-white hover:text-bg hover:shadow-lg hover:shadow-accent/30 transition uppercase">View Telemetry</a>
-        <a href="#contact" class="px-6 py-3 border border-border rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">Pit Radio</a>
+        <a href="#projects" class="px-6 py-3 bg-accent text-white font-race font-bold text-sm tracking-wider rounded hover:bg-white hover:text-bg hover:shadow-lg hover:shadow-accent/30 transition uppercase">View Projects</a>
+        <a href="#contact" class="px-6 py-3 border border-border rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">Get in Touch</a>
       </div>
     </div>
     <div class="flex justify-center fade-up">
@@ -401,7 +382,7 @@
         <div class="absolute -inset-4 bg-gradient-to-br from-accent to-accent2 blur-3xl opacity-20 rounded-full"></div>
         <div class="absolute -inset-1 border-2 border-accent/30 rounded-full"></div>
         <img src="images/profile.jpeg" onerror="this.src='images/profile.svg'" alt="Priyanka Mangrulkar" class="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-accent/50 shadow-2xl"/>
-        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-accent text-white font-race text-xs font-bold px-4 py-1 rounded tracking-widest">P01</div>
+        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-accent text-white font-race text-xs font-bold px-4 py-1 rounded tracking-widest">#01</div>
       </div>
     </div>
   </div>
@@ -409,20 +390,21 @@
 
 <!-- ABOUT -->
 <section id="about" class="py-24 px-6 speed-lines relative">
-  <!-- Ambient cars -->
-  <div class="f1-car-track">
-    <svg class="f1-car right car-1" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 22 L15 22 L18 18 L30 16 L45 14 L55 10 L72 9 L85 10 L92 14 L95 18 L95 22 L5 22Z" fill="#1e41ff" opacity="0.8"/>
-      <circle cx="22" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <circle cx="80" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <rect x="55" y="11" width="20" height="6" rx="1" fill="#e10600" opacity="0.6"/>
+  <!-- Car cruising through about section -->
+  <div class="car-track">
+    <svg class="rb-car" style="top:40%; width:140px; height:44px; animation: driveLeft 16s linear 2s infinite;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b" opacity="0.5"/>
+      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600" opacity="0.4"/>
+      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a" opacity="0.5"/>
+      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222" opacity="0.5"/>
+      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222" opacity="0.5"/>
     </svg>
   </div>
 
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="flex items-center gap-4 mb-10 fade-up">
-      <span class="section-number">LAP 01</span>
-      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">DRIVER PROFILE</h2>
+      <span class="section-number">01</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">ABOUT ME</h2>
       <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
     </div>
     <div class="grid md:grid-cols-3 gap-10 fade-up">
@@ -433,13 +415,13 @@
       </div>
       <div class="space-y-3 text-sm">
         <div class="p-5 bg-card border border-border rounded-lg">
-          <p class="text-accent font-race text-[0.6rem] tracking-[0.2em] mb-1">CONSTRUCTOR</p>
+          <p class="text-accent font-race text-[0.6rem] tracking-[0.2em] mb-1">EDUCATION</p>
           <p class="text-white font-semibold">M.S. Information Systems</p>
           <p class="text-muted">Northeastern University</p>
           <p class="text-muted text-xs mt-1">Expected May 2026</p>
         </div>
         <div class="p-5 bg-card border border-border rounded-lg">
-          <p class="text-accent font-race text-[0.6rem] tracking-[0.2em] mb-1">HOME CIRCUIT</p>
+          <p class="text-accent font-race text-[0.6rem] tracking-[0.2em] mb-1">LOCATION</p>
           <p class="text-white font-semibold">Boston, MA</p>
         </div>
         <div class="p-5 bg-card border border-border rounded-lg">
@@ -456,14 +438,14 @@
 
 <!-- EXPERIENCE -->
 <section id="experience" class="py-24 px-6 relative">
-  <div class="f1-car-track">
-    <div class="streak streak-blue" style="top:35%; animation-delay:1s;"></div>
-    <div class="streak streak-red" style="top:70%; animation-delay:3s;"></div>
+  <div class="car-track">
+    <div class="streak streak-blue" style="top:30%; animation-delay:1s;"></div>
+    <div class="streak streak-red" style="top:65%; animation-delay:3.5s;"></div>
   </div>
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="flex items-center gap-4 mb-12 fade-up">
-      <span class="section-number">LAP 02</span>
-      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">RACE HISTORY</h2>
+      <span class="section-number">02</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">EXPERIENCE</h2>
       <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
     </div>
     <div class="timeline" id="timeline"></div>
@@ -472,60 +454,73 @@
 
 <!-- PROJECTS -->
 <section id="projects" class="py-24 px-6 speed-lines relative">
-  <!-- Car crossing the projects section -->
-  <div class="f1-car-track">
-    <svg class="f1-car left car-2" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 22 L15 22 L18 18 L30 16 L45 14 L55 10 L72 9 L85 10 L92 14 L95 18 L95 22 L5 22Z" fill="#e10600" opacity="0.9"/>
-      <circle cx="22" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <circle cx="80" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <rect x="55" y="11" width="20" height="6" rx="1" fill="#fff" opacity="0.3"/>
+  <!-- Two cars racing across projects -->
+  <div class="car-track">
+    <!-- Lead car - full RB22 -->
+    <svg class="rb-car" style="top:20%; width:150px; height:48px; animation: driveRight 11s linear 1s infinite;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
+      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600"/>
+      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a"/>
+      <path d="M8 36 L3 34 L3 38 L20 38 L20 36Z" fill="#1a2d6b"/>
+      <rect x="3" y="33" width="18" height="2" fill="#e10600" opacity="0.8"/>
+      <rect x="140" y="12" width="16" height="3" rx="1" fill="#1a2d6b"/>
+      <rect x="140" y="16" width="16" height="2" fill="#e10600" opacity="0.7"/>
+      <rect x="147" y="16" width="3" height="20" fill="#1a2d6b" opacity="0.6"/>
+      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
+      <ellipse cx="32" cy="39" rx="5" ry="5" fill="#444"/>
+      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
+      <ellipse cx="130" cy="39" rx="5" ry="5" fill="#444"/>
+      <text x="95" y="27" font-family="sans-serif" font-size="7" fill="#c8a200" font-weight="bold">1</text>
     </svg>
-    <svg class="f1-car right car-3" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 22 L15 22 L18 18 L30 16 L45 14 L55 10 L72 9 L85 10 L92 14 L95 18 L95 22 L5 22Z" fill="#1e41ff" opacity="0.7"/>
-      <circle cx="22" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <circle cx="80" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <rect x="55" y="11" width="20" height="6" rx="1" fill="#e10600" opacity="0.5"/>
+    <!-- Chasing car - slightly behind -->
+    <svg class="rb-car" style="top:72%; width:130px; height:42px; animation: driveLeft 14s linear 4s infinite; opacity:0.45;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
+      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600" opacity="0.8"/>
+      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a"/>
+      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
+      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
+      <text x="95" y="27" font-family="sans-serif" font-size="7" fill="#c8a200" font-weight="bold">11</text>
     </svg>
   </div>
 
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="flex items-center gap-4 mb-4 fade-up">
-      <span class="section-number">LAP 03</span>
-      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">PIT STOP TELEMETRY</h2>
+      <span class="section-number">03</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">PROJECTS</h2>
       <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
     </div>
-    <p class="text-muted mb-10 fade-up font-mono text-sm">Every project: <span class="text-accent">THE PROBLEM</span> → <span class="text-accent2">THE SOLUTION</span> → <span class="text-green-400">THE IMPACT</span></p>
+    <p class="text-muted mb-10 fade-up font-mono text-sm">Every project: <span class="text-accent2">THE PROBLEM</span> → <span class="text-accent">THE SOLUTION</span> → <span class="text-green-400">THE IMPACT</span></p>
     <div class="grid md:grid-cols-2 gap-6" id="projects-grid"></div>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills" class="py-24 px-6 relative">
-  <div class="f1-car-track">
-    <div class="streak streak-red" style="top:40%; animation-delay:0.5s;"></div>
-    <div class="streak streak-blue" style="top:75%; animation-delay:2.5s;"></div>
+  <div class="car-track">
+    <div class="streak streak-blue" style="top:35%; animation-delay:0.5s;"></div>
+    <div class="streak streak-red" style="top:70%; animation-delay:2.5s;"></div>
   </div>
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="flex items-center gap-4 mb-10 fade-up">
-      <span class="section-number">LAP 04</span>
-      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">TECH DASHBOARD</h2>
+      <span class="section-number">04</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">TECH STACK</h2>
       <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
     </div>
     <div class="grid md:grid-cols-2 gap-8 fade-up">
       <div>
-        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">POWER UNIT — LANGUAGES & TOOLS</h3>
+        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">LANGUAGES & TOOLS</h3>
         <div class="flex flex-wrap gap-2" id="skills-lang"></div>
       </div>
       <div>
-        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">DRS — DATA & ML</h3>
+        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">DATA & MACHINE LEARNING</h3>
         <div class="flex flex-wrap gap-2" id="skills-ml"></div>
       </div>
       <div>
-        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">TELEMETRY — BI & VISUALIZATION</h3>
+        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">BI & VISUALIZATION</h3>
         <div class="flex flex-wrap gap-2" id="skills-bi"></div>
       </div>
       <div>
-        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">GARAGE — DATABASES & CLOUD</h3>
+        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">DATABASES & CLOUD</h3>
         <div class="flex flex-wrap gap-2" id="skills-db"></div>
       </div>
     </div>
@@ -534,17 +529,18 @@
 
 <!-- CERTIFICATIONS -->
 <section id="certifications" class="py-24 px-6 speed-lines relative">
-  <div class="f1-car-track">
-    <svg class="f1-car right car-1" style="top:50%; animation-delay:2s; animation-duration:13s;" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 22 L15 22 L18 18 L30 16 L45 14 L55 10 L72 9 L85 10 L92 14 L95 18 L95 22 L5 22Z" fill="#e10600" opacity="0.6"/>
-      <circle cx="22" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <circle cx="80" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
+  <div class="car-track">
+    <svg class="rb-car" style="top:55%; width:130px; height:42px; animation: driveRight 15s linear 3s infinite; opacity:0.35;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
+      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600" opacity="0.7"/>
+      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
+      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
     </svg>
   </div>
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="flex items-center gap-4 mb-10 fade-up">
-      <span class="section-number">LAP 05</span>
-      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">PODIUM FINISHES</h2>
+      <span class="section-number">05</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">CERTIFICATIONS</h2>
       <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 fade-up" id="certs-grid"></div>
@@ -554,22 +550,30 @@
 <!-- CONTACT -->
 <section id="contact" class="py-32 px-6 text-center relative">
   <div class="checkered absolute inset-0 opacity-10"></div>
-  <!-- Final car flyby -->
-  <div class="f1-car-track">
-    <svg class="f1-car right" style="top:30%; animation-delay:1s; animation-duration:7s;" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 22 L15 22 L18 18 L30 16 L45 14 L55 10 L72 9 L85 10 L92 14 L95 18 L95 22 L5 22Z" fill="#e10600" opacity="0.9"/>
-      <circle cx="22" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <circle cx="80" cy="24" r="5" fill="#333" stroke="#555" stroke-width="1"/>
-      <rect x="55" y="11" width="20" height="6" rx="1" fill="#1e41ff" opacity="0.7"/>
-      <rect x="30" y="15" width="15" height="4" rx="1" fill="#06081a" opacity="0.5"/>
+  <!-- Victory lap car -->
+  <div class="car-track">
+    <svg class="rb-car" style="top:25%; width:160px; height:50px; animation: driveRight 8s linear 0s infinite;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
+      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600"/>
+      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a"/>
+      <path d="M8 36 L3 34 L3 38 L20 38 L20 36Z" fill="#1a2d6b"/>
+      <rect x="3" y="33" width="18" height="2" fill="#e10600" opacity="0.8"/>
+      <rect x="140" y="12" width="16" height="3" rx="1" fill="#1a2d6b"/>
+      <rect x="140" y="16" width="16" height="2" fill="#e10600" opacity="0.7"/>
+      <rect x="147" y="16" width="3" height="20" fill="#1a2d6b" opacity="0.6"/>
+      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
+      <ellipse cx="32" cy="39" rx="5" ry="5" fill="#444"/>
+      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
+      <ellipse cx="130" cy="39" rx="5" ry="5" fill="#444"/>
+      <text x="95" y="27" font-family="sans-serif" font-size="7" fill="#c8a200" font-weight="bold">1</text>
     </svg>
   </div>
   <div class="max-w-2xl mx-auto relative z-10">
-    <p class="font-race text-accent text-xs tracking-[0.3em] mb-4 fade-up uppercase">// CHEQUERED FLAG</p>
-    <h2 class="text-4xl md:text-5xl font-race font-black mb-6 fade-up text-white">LET'S <span class="text-accent glow-red">RACE</span></h2>
-    <p class="text-muted mb-10 fade-up">I'm currently looking for full-time opportunities in AI Engineering, Data Analytics, Data Engineering, Data Science, Business Analysis, and BI. My pit radio is always open — feel free to reach out!</p>
+    <p class="font-race text-accent text-xs tracking-[0.3em] mb-4 fade-up uppercase">// Finish Line</p>
+    <h2 class="text-4xl md:text-5xl font-race font-black mb-6 fade-up text-white">LET'S <span class="text-accent glow-blue">CONNECT</span></h2>
+    <p class="text-muted mb-10 fade-up">I'm currently looking for full-time opportunities in AI Engineering, Data Analytics, Data Engineering, Data Science, Business Analysis, and BI. I'd love to hear from you — feel free to reach out!</p>
     <div class="flex flex-wrap justify-center gap-4 fade-up">
-      <a href="mailto:mangrulkarp@northeastern.edu" class="px-6 py-3 bg-accent text-white font-race font-bold text-sm tracking-wider rounded hover:bg-white hover:text-bg transition uppercase">Pit Radio</a>
+      <a href="mailto:mangrulkarp@northeastern.edu" class="px-6 py-3 bg-accent text-white font-race font-bold text-sm tracking-wider rounded hover:bg-white hover:text-bg transition uppercase">Email Me</a>
       <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="px-6 py-3 border border-border bg-card rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">LinkedIn</a>
       <a href="https://github.com/Priyanka5317/" target="_blank" class="px-6 py-3 border border-border bg-card rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">GitHub</a>
     </div>
@@ -631,7 +635,7 @@ projects.forEach((p, i) => {
   el.innerHTML = `
     <div class="aspect-[400/220] bg-navy overflow-hidden border-b border-border relative">
       <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover"/>
-      <div class="absolute top-2 right-2 bg-accent text-white font-race text-[0.55rem] font-bold px-2 py-0.5 rounded tracking-wider">P${String(i+1).padStart(2,'0')}</div>
+      <div class="absolute top-2 right-2 bg-accent text-white font-race text-[0.55rem] font-bold px-2 py-0.5 rounded tracking-wider">${String(i+1).padStart(2,'0')}</div>
     </div>
     <div class="p-6">
       <div class="flex justify-between items-start mb-4">
@@ -640,11 +644,11 @@ projects.forEach((p, i) => {
       </div>
       <div class="space-y-3 mb-4">
         <div>
-          <p class="psi-label text-accent mb-1">▸ THE PROBLEM</p>
+          <p class="psi-label text-accent2 mb-1">▸ THE PROBLEM</p>
           <p class="text-sm text-ink/80">${p.problem}</p>
         </div>
         <div>
-          <p class="psi-label text-accent2 mb-1">▸ THE SOLUTION</p>
+          <p class="psi-label text-accent mb-1">▸ THE SOLUTION</p>
           <p class="text-sm text-ink/80">${p.solution}</p>
         </div>
         <div>
@@ -672,7 +676,7 @@ certs.forEach((c, i) => {
   const div = document.createElement('div');
   div.className = 'p-6 bg-card border border-border rounded-lg hover:border-accent/50 transition group racing-stripe pl-8';
   div.innerHTML = `
-    <div class="font-race text-accent text-[0.55rem] tracking-[0.3em] mb-3">P${i+1} FINISH</div>
+    <div class="font-race text-accent2 text-[0.55rem] tracking-[0.3em] mb-3">CERTIFIED</div>
     <h3 class="font-bold text-white mb-1 text-sm">${c.title}</h3>
     <p class="text-muted text-xs">${c.desc}</p>
     <p class="font-mono text-xs text-${c.color} mt-2">${c.org}</p>
