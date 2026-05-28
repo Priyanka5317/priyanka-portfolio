@@ -10,23 +10,25 @@
   import { inject } from 'https://esm.sh/@vercel/analytics';
   inject();
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: {
       extend: {
         fontFamily: {
+          race: ['Orbitron', 'sans-serif'],
           sans: ['Inter', 'sans-serif'],
           mono: ['JetBrains Mono', 'monospace'],
         },
         colors: {
-          bg: '#fafaf9',
-          card: '#ffffff',
-          border: '#e7e5e4',
-          ink: '#1c1917',
-          muted: '#78716c',
-          accent: '#6d28d9',
-          accent2: '#ec4899',
+          bg: '#0a0e1a',
+          card: '#0f1629',
+          border: '#1e2a4a',
+          ink: '#e8eaf6',
+          muted: '#8892b0',
+          accent: '#ffc906',
+          accent2: '#ff1801',
+          navy: '#0c1b3a',
         }
       }
     }
@@ -35,51 +37,130 @@
 <style>
   html { scroll-behavior: smooth; }
   body {
-    background: #fafaf9;
-    color: #1c1917;
+    background: #0a0e1a;
+    color: #e8eaf6;
     font-family: 'Inter', sans-serif;
-    background-image:
-      radial-gradient(circle at 15% 0%, rgba(109, 40, 217, 0.08), transparent 40%),
-      radial-gradient(circle at 85% 40%, rgba(236, 72, 153, 0.06), transparent 40%);
   }
+
+  /* Carbon fiber background */
+  .carbon-bg {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,201,6,0.03) 1px, transparent 0),
+      linear-gradient(180deg, #0a0e1a 0%, #0c1b3a 50%, #0a0e1a 100%);
+    background-size: 20px 20px, 100% 100%;
+  }
+
+  /* Grid lines */
+  .grid-lines {
+    background-image:
+      linear-gradient(rgba(255,201,6,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,201,6,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Racing stripe */
+  .racing-stripe {
+    position: relative;
+  }
+  .racing-stripe::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #ffc906, #ff1801);
+  }
+
   .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
+
   .project-card { transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
-  .project-card:hover { transform: translateY(-6px); border-color: #6d28d9; box-shadow: 0 20px 40px -20px rgba(109, 40, 217, 0.25); }
-  .grad-text {
-    background: linear-gradient(135deg, #6d28d9 0%, #ec4899 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .project-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: #ffc906;
+    box-shadow: 0 20px 60px -20px rgba(255, 201, 6, 0.3);
   }
+
+  .glow-yellow { text-shadow: 0 0 40px rgba(255, 201, 6, 0.4); }
+  .glow-red { text-shadow: 0 0 40px rgba(255, 24, 1, 0.4); }
+
   .nav-link { position: relative; }
   .nav-link::after {
     content: '';
     position: absolute;
     bottom: -4px; left: 0;
     width: 0; height: 2px;
-    background: linear-gradient(90deg, #6d28d9, #ec4899);
+    background: #ffc906;
     transition: width 0.3s;
   }
   .nav-link:hover::after { width: 100%; }
+
   .skill-pill { transition: all 0.3s; }
   .skill-pill:hover {
-    background: #6d28d9;
-    color: #fff;
-    border-color: #6d28d9;
+    background: #ffc906;
+    color: #0a0e1a;
+    border-color: #ffc906;
     transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255, 201, 6, 0.3);
   }
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: #f5f5f4; }
-  ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 5px; }
-  ::-webkit-scrollbar-thumb:hover { background: #6d28d9; }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #0a0e1a; }
+  ::-webkit-scrollbar-thumb { background: #1e2a4a; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #ffc906; }
+
+  /* Start lights animation */
+  @keyframes lightOn {
+    0% { background: #1a1a2e; box-shadow: none; }
+    100% { background: #ff1801; box-shadow: 0 0 30px #ff1801; }
+  }
+  @keyframes lightOff {
+    0% { background: #ff1801; box-shadow: 0 0 30px #ff1801; }
+    100% { background: #1a1a2e; box-shadow: none; }
+  }
+  @keyframes lightGo {
+    0% { background: #1a1a2e; }
+    100% { background: #22c55e; box-shadow: 0 0 40px #22c55e; }
+  }
+  .start-light {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #1a1a2e;
+    border: 2px solid #333;
+  }
+  .light-col { display: flex; flex-direction: column; gap: 8px; }
+  .sl-1 .start-light { animation: lightOn 0.3s 0.5s forwards; }
+  .sl-2 .start-light { animation: lightOn 0.3s 1.5s forwards; }
+  .sl-3 .start-light { animation: lightOn 0.3s 2.5s forwards; }
+  .sl-4 .start-light { animation: lightOn 0.3s 3.5s forwards; }
+  .sl-5 .start-light { animation: lightOn 0.3s 4.5s forwards; }
+  .sl-go .start-light { animation: lightOff 0.1s 5.5s forwards; }
+  .sl-1, .sl-2, .sl-3, .sl-4, .sl-5 { }
+
+  @keyframes blink { 50% { opacity: 0; } }
+  .cursor-blink { animation: blink 1s infinite; }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
   .float { animation: float 4s ease-in-out infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
-  .cursor { animation: blink 1s infinite; }
+
+  @keyframes speedLine {
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(200%); opacity: 0; }
+  }
+
+  /* Checkered pattern */
+  .checkered {
+    background-image:
+      linear-gradient(45deg, #1e2a4a 25%, transparent 25%),
+      linear-gradient(-45deg, #1e2a4a 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #1e2a4a 75%),
+      linear-gradient(-45deg, transparent 75%, #1e2a4a 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
 
   /* Timeline */
   .timeline { position: relative; }
@@ -88,169 +169,240 @@
     position: absolute;
     left: 20px;
     top: 0; bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #6d28d9, #ec4899, transparent);
+    width: 3px;
+    background: linear-gradient(to bottom, #ffc906, #ff1801, transparent);
   }
   @media (min-width: 768px) {
     .timeline::before { left: 50%; transform: translateX(-50%); }
     .tl-item { width: 50%; }
     .tl-item.left { padding-right: 3rem; text-align: right; }
     .tl-item.right { margin-left: 50%; padding-left: 3rem; }
-    .tl-item.left .tl-dot { right: -9px; left: auto; }
-    .tl-item.right .tl-dot { left: -9px; }
+    .tl-item.left .tl-dot { right: -11px; left: auto; }
+    .tl-item.right .tl-dot { left: -11px; }
   }
   .tl-item { position: relative; padding-left: 3.5rem; margin-bottom: 3rem; }
   .tl-dot {
     position: absolute;
-    left: 12px;
+    left: 11px;
     top: 8px;
-    width: 18px; height: 18px;
-    background: #fff;
-    border: 3px solid #6d28d9;
+    width: 22px; height: 22px;
+    background: #ffc906;
     border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.15);
+    border: 3px solid #0a0e1a;
+    box-shadow: 0 0 0 3px #ffc906, 0 0 15px rgba(255, 201, 6, 0.4);
     z-index: 2;
   }
   @media (min-width: 768px) {
     .tl-item { padding-left: 0; }
   }
 
-  .stat-bubble {
-    background: linear-gradient(135deg, rgba(109, 40, 217, 0.1), rgba(236, 72, 153, 0.1));
-    border: 1px solid rgba(109, 40, 217, 0.2);
+  .psi-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
-  .psi-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  /* Speed lines overlay */
+  .speed-lines { position: relative; overflow: hidden; }
+  .speed-lines::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 98%,
+      rgba(255, 201, 6, 0.03) 98%,
+      rgba(255, 201, 6, 0.03) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* RPM meter animation */
+  @keyframes rpm {
+    0% { width: 15%; }
+    50% { width: 85%; }
+    100% { width: 15%; }
+  }
+  .rpm-bar {
+    height: 3px;
+    background: linear-gradient(90deg, #22c55e, #ffc906, #ff1801);
+    animation: rpm 3s ease-in-out infinite;
+    border-radius: 2px;
+  }
+
+  .section-number {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 0.9rem;
+    background: linear-gradient(135deg, #ffc906, #ff1801);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 </style>
 </head>
-<body class="antialiased">
+<body class="antialiased carbon-bg">
 
 <!-- NAV -->
 <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-bg/80 border-b border-border">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="#home" class="font-mono font-bold text-lg grad-text">priyanka.m</a>
-    <div class="hidden md:flex gap-8 text-sm text-muted">
-      <a href="#about" class="nav-link hover:text-ink">About</a>
-      <a href="#experience" class="nav-link hover:text-ink">Experience</a>
-      <a href="#projects" class="nav-link hover:text-ink">Projects</a>
-      <a href="#skills" class="nav-link hover:text-ink">Skills</a>
-      <a href="#certifications" class="nav-link hover:text-ink">Certifications</a>
-      <a href="#contact" class="nav-link hover:text-ink">Contact</a>
+    <a href="#home" class="font-race font-bold text-lg text-accent tracking-wider">P.MANGRULKAR</a>
+    <div class="hidden md:flex gap-8 text-sm text-muted font-mono uppercase tracking-wider">
+      <a href="#about" class="nav-link hover:text-accent">About</a>
+      <a href="#experience" class="nav-link hover:text-accent">Career</a>
+      <a href="#projects" class="nav-link hover:text-accent">Projects</a>
+      <a href="#skills" class="nav-link hover:text-accent">Tech</a>
+      <a href="#certifications" class="nav-link hover:text-accent">Certs</a>
+      <a href="#contact" class="nav-link hover:text-accent">Contact</a>
     </div>
+    <div class="rpm-bar w-full absolute bottom-0 left-0"></div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section id="home" class="min-h-screen flex items-center px-6 pt-20">
-  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-12 items-center">
+<section id="home" class="min-h-screen flex items-center px-6 pt-20 grid-lines relative">
+  <!-- Speed lines decoration -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
+    <div class="absolute top-2/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent2/20 to-transparent"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-12 items-center relative z-10">
     <div class="md:col-span-2">
-      <p class="font-mono text-accent text-sm mb-4 fade-up">$ hello_world.py</p>
-      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 fade-up leading-tight">
-        Hi, I'm <span class="grad-text">Priyanka</span><span class="text-accent cursor">_</span>
+      <!-- Start Lights -->
+      <div class="flex gap-3 mb-6 fade-up">
+        <div class="light-col sl-1"><span class="start-light"></span><span class="start-light"></span></div>
+        <div class="light-col sl-2"><span class="start-light"></span><span class="start-light"></span></div>
+        <div class="light-col sl-3"><span class="start-light"></span><span class="start-light"></span></div>
+        <div class="light-col sl-4"><span class="start-light"></span><span class="start-light"></span></div>
+        <div class="light-col sl-5 sl-go"><span class="start-light"></span><span class="start-light"></span></div>
+      </div>
+
+      <p class="font-race text-accent text-xs tracking-[0.3em] mb-4 fade-up uppercase">// Lights out and away we go</p>
+      <h1 class="text-5xl md:text-7xl font-race font-black tracking-tight mb-4 fade-up leading-tight">
+        <span class="text-white">PRIYANKA</span><br/>
+        <span class="text-accent glow-yellow">MANGRULKAR</span><span class="text-accent2 cursor-blink">_</span>
       </h1>
-      <p class="text-xl md:text-2xl text-ink mb-2 fade-up font-medium">AI Engineer · Data Analyst · Data Scientist</p>
+      <p class="text-xl md:text-2xl text-ink mb-2 fade-up font-semibold">AI Engineer · Data Analyst · Data Scientist</p>
       <p class="text-muted mb-1 fade-up font-medium text-sm">Data Engineer · Business Analyst · BI Developer</p>
-      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based graduate student at Northeastern, building AI-powered products and turning messy data into clear stories and actionable decisions.</p>
+      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based engineer at the intersection of AI and data — building intelligent systems, crunching telemetry, and turning raw signals into race-winning decisions.</p>
+
+      <!-- Badges -->
       <div class="flex flex-wrap gap-2 mb-6 fade-up">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-accent/10 to-accent2/10 border border-accent/20 rounded-full text-xs font-mono text-accent font-semibold">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent/10 border border-accent/30 rounded text-xs font-race text-accent tracking-wider">
           <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-          Anthropic Certified
+          ANTHROPIC CERTIFIED
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent2/10 border border-accent2/30 rounded text-xs font-race text-accent2 tracking-wider">
+          P1 · OPEN TO WORK
         </span>
       </div>
+
       <div class="flex flex-wrap gap-4 fade-up">
-        <a href="#projects" class="px-6 py-3 bg-gradient-to-r from-accent to-accent2 text-white font-medium rounded-full hover:shadow-lg hover:shadow-accent/30 transition">View My Work</a>
-        <a href="assets/Priyanka_Mangrulkar_Resume.pdf" target="_blank" class="px-6 py-3 border-2 border-accent text-accent rounded-full hover:bg-accent hover:text-white transition font-medium">Download Resume</a>
-        <a href="#contact" class="px-6 py-3 border border-border rounded-full hover:border-accent transition">Get in Touch</a>
+        <a href="#projects" class="px-6 py-3 bg-accent text-bg font-race font-bold text-sm tracking-wider rounded hover:bg-white hover:shadow-lg hover:shadow-accent/30 transition uppercase">View Telemetry</a>
+        <a href="assets/Priyanka_Mangrulkar_Resume.pdf" target="_blank" class="px-6 py-3 border-2 border-accent text-accent font-race text-sm tracking-wider rounded hover:bg-accent hover:text-bg transition uppercase font-bold">Download CV</a>
+        <a href="#contact" class="px-6 py-3 border border-border rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">Pit Radio</a>
       </div>
     </div>
     <div class="flex justify-center fade-up">
       <div class="relative float">
-        <div class="absolute -inset-4 bg-gradient-to-br from-accent to-accent2 blur-2xl opacity-30 rounded-full"></div>
-        <img src="images/profile.jpeg" onerror="this.src='images/profile.svg'" alt="Priyanka Mangrulkar" class="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-white shadow-2xl"/>
+        <div class="absolute -inset-4 bg-gradient-to-br from-accent to-accent2 blur-3xl opacity-20 rounded-full"></div>
+        <div class="absolute -inset-1 border-2 border-accent/30 rounded-full"></div>
+        <img src="images/profile.jpeg" onerror="this.src='images/profile.svg'" alt="Priyanka Mangrulkar" class="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-accent/50 shadow-2xl"/>
+        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-accent text-bg font-race text-xs font-bold px-4 py-1 rounded tracking-widest">P01</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="py-24 px-6">
+<section id="about" class="py-24 px-6 speed-lines">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">01.</span> About Me</h2>
-    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-10 fade-up"></div>
+    <div class="flex items-center gap-4 mb-10 fade-up">
+      <span class="section-number">LAP 01</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">DRIVER PROFILE</h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
+    </div>
     <div class="grid md:grid-cols-3 gap-10 fade-up">
-      <div class="md:col-span-2 space-y-4 text-ink leading-relaxed">
+      <div class="md:col-span-2 space-y-4 text-ink/90 leading-relaxed racing-stripe pl-6">
         <p>I'm a data professional passionate about transforming raw, messy data into clear insights that drive real business decisions. Currently pursuing my <span class="text-accent font-semibold">M.S. in Information Systems at Northeastern University</span>, I bridge the gap between engineering rigor and business storytelling.</p>
         <p>With hands-on experience building ETL pipelines, designing data warehouses, and crafting dashboards in Power BI and Tableau, I enjoy the full analytics lifecycle — from data wrangling and modeling to delivering executive-ready insights.</p>
         <p>Previously, I worked as a <span class="text-accent font-semibold">Data Science Co-op at WhoozCooking</span> and as a Research Analyst at Team Maverick, where I built predictive models and interactive dashboards that improved performance metrics by up to 50%. I also co-built <span class="text-accent font-semibold">SwipeHire.io</span>, an AI-powered recruitment platform. I'm actively seeking full-time roles in <span class="text-accent font-semibold">AI Engineering, Data Analytics, Data Engineering, Data Science, Business Analysis, and BI Development</span>.</p>
       </div>
       <div class="space-y-3 text-sm">
-        <div class="p-5 bg-card border border-border rounded-xl shadow-sm">
-          <p class="text-muted text-xs font-mono mb-1">EDUCATION</p>
-          <p class="text-ink font-semibold">M.S. Information Systems</p>
+        <div class="p-5 bg-card border border-border rounded-lg">
+          <p class="text-accent font-race text-[0.6rem] tracking-[0.2em] mb-1">CONSTRUCTOR</p>
+          <p class="text-white font-semibold">M.S. Information Systems</p>
           <p class="text-muted">Northeastern University</p>
           <p class="text-muted text-xs mt-1">Expected May 2026</p>
         </div>
-        <div class="p-5 bg-card border border-border rounded-xl shadow-sm">
-          <p class="text-muted text-xs font-mono mb-1">LOCATION</p>
-          <p class="text-ink font-semibold">Boston, MA</p>
+        <div class="p-5 bg-card border border-border rounded-lg">
+          <p class="text-accent font-race text-[0.6rem] tracking-[0.2em] mb-1">HOME CIRCUIT</p>
+          <p class="text-white font-semibold">Boston, MA</p>
         </div>
-        <div class="p-5 bg-card border border-border rounded-xl shadow-sm">
-          <p class="text-muted text-xs font-mono mb-1">OPEN TO</p>
-          <p class="text-ink font-semibold">Full-time · 2026</p>
+        <div class="p-5 bg-card border border-border rounded-lg">
+          <p class="text-accent font-race text-[0.6rem] tracking-[0.2em] mb-1">STATUS</p>
+          <p class="text-white font-semibold flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            Open to Work · 2026
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE (Timeline) -->
-<section id="experience" class="py-24 px-6 bg-gradient-to-b from-transparent via-white/50 to-transparent">
+<!-- EXPERIENCE (Timeline / Race Laps) -->
+<section id="experience" class="py-24 px-6">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">02.</span> Experience & Education</h2>
-    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-12 fade-up"></div>
-
-    <div class="timeline" id="timeline">
-      <!-- Injected by JS -->
+    <div class="flex items-center gap-4 mb-12 fade-up">
+      <span class="section-number">LAP 02</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">RACE HISTORY</h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
     </div>
+    <div class="timeline" id="timeline"></div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="py-24 px-6">
+<section id="projects" class="py-24 px-6 speed-lines">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">03.</span> Featured Projects</h2>
-    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-4 fade-up"></div>
-    <p class="text-muted mb-10 fade-up">Every project broken down into <span class="text-accent font-semibold">The Problem</span>, <span class="text-accent font-semibold">The Solution</span>, and <span class="text-accent font-semibold">The Impact</span>.</p>
+    <div class="flex items-center gap-4 mb-4 fade-up">
+      <span class="section-number">LAP 03</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">PIT STOP TELEMETRY</h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
+    </div>
+    <p class="text-muted mb-10 fade-up font-mono text-sm">Every project: <span class="text-accent2">THE PROBLEM</span> → <span class="text-accent">THE SOLUTION</span> → <span class="text-green-400">THE IMPACT</span></p>
     <div class="grid md:grid-cols-2 gap-6" id="projects-grid"></div>
   </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="py-24 px-6 bg-gradient-to-b from-transparent via-white/50 to-transparent">
+<section id="skills" class="py-24 px-6">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">04.</span> Skills & Tools</h2>
-    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-10 fade-up"></div>
+    <div class="flex items-center gap-4 mb-10 fade-up">
+      <span class="section-number">LAP 04</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">TECH DASHBOARD</h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
+    </div>
     <div class="grid md:grid-cols-2 gap-8 fade-up">
       <div>
-        <h3 class="text-accent font-mono text-sm mb-3 font-semibold">LANGUAGES & TOOLS</h3>
+        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">POWER UNIT — LANGUAGES & TOOLS</h3>
         <div class="flex flex-wrap gap-2" id="skills-lang"></div>
       </div>
       <div>
-        <h3 class="text-accent font-mono text-sm mb-3 font-semibold">DATA & ML</h3>
+        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">DRS — DATA & ML</h3>
         <div class="flex flex-wrap gap-2" id="skills-ml"></div>
       </div>
       <div>
-        <h3 class="text-accent font-mono text-sm mb-3 font-semibold">BI & VISUALIZATION</h3>
+        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">TELEMETRY — BI & VISUALIZATION</h3>
         <div class="flex flex-wrap gap-2" id="skills-bi"></div>
       </div>
       <div>
-        <h3 class="text-accent font-mono text-sm mb-3 font-semibold">DATABASES & CLOUD</h3>
+        <h3 class="text-accent font-race text-[0.65rem] tracking-[0.2em] mb-3 font-bold">GARAGE — DATABASES & CLOUD</h3>
         <div class="flex flex-wrap gap-2" id="skills-db"></div>
       </div>
     </div>
@@ -258,105 +410,47 @@
 </section>
 
 <!-- CERTIFICATIONS -->
-<section id="certifications" class="py-24 px-6">
+<section id="certifications" class="py-24 px-6 speed-lines">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold mb-2 fade-up"><span class="grad-text font-mono text-xl">05.</span> Certifications</h2>
-    <div class="w-16 h-1 bg-gradient-to-r from-accent to-accent2 rounded-full mb-10 fade-up"></div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 fade-up">
-      <div class="p-6 bg-card border border-border rounded-2xl shadow-sm hover:shadow-lg hover:border-accent transition group">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-accent2/20 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-          <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        </div>
-        <h3 class="font-bold text-ink mb-1">Anthropic Certified</h3>
-        <p class="text-muted text-sm">Claude AI · Prompt Engineering & AI Applications</p>
-        <p class="font-mono text-xs text-accent mt-2">Anthropic</p>
-      </div>
-      <div class="p-6 bg-card border border-border rounded-2xl shadow-sm hover:shadow-lg hover:border-accent transition group">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-700/20 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-          <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        </div>
-        <h3 class="font-bold text-ink mb-1">Microsoft Power BI Data Analyst</h3>
-        <p class="text-muted text-sm">Data Visualization · DAX · Power Query</p>
-        <p class="font-mono text-xs text-blue-600 mt-2">LinkedIn Learning</p>
-      </div>
-      <div class="p-6 bg-card border border-border rounded-2xl shadow-sm hover:shadow-lg hover:border-accent transition group">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-700/20 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-          <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        </div>
-        <h3 class="font-bold text-ink mb-1">Excel for FP&A</h3>
-        <p class="text-muted text-sm">Financial Planning & Analysis · Advanced Excel</p>
-        <p class="font-mono text-xs text-green-600 mt-2">LinkedIn Learning · Jan 2026</p>
-      </div>
-      <div class="p-6 bg-card border border-border rounded-2xl shadow-sm hover:shadow-lg hover:border-accent transition group">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-700/20 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-          <svg class="w-6 h-6 text-orange-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        </div>
-        <h3 class="font-bold text-ink mb-1">Non-Technical Skills of Effective Data Scientists</h3>
-        <p class="text-muted text-sm">Communication · Stakeholder Management · Data Storytelling</p>
-        <p class="font-mono text-xs text-orange-600 mt-2">LinkedIn Learning · May 2025</p>
-      </div>
+    <div class="flex items-center gap-4 mb-10 fade-up">
+      <span class="section-number">LAP 05</span>
+      <h2 class="text-3xl md:text-4xl font-race font-bold text-white">PODIUM FINISHES</h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent"></div>
     </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 fade-up" id="certs-grid"></div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="py-32 px-6 text-center">
-  <div class="max-w-2xl mx-auto">
-    <p class="font-mono text-accent text-sm mb-4 fade-up">$ let's_connect.sh</p>
-    <h2 class="text-4xl md:text-5xl font-bold mb-6 fade-up">Let's <span class="grad-text">work together</span></h2>
-    <p class="text-muted mb-10 fade-up">I'm currently looking for full-time opportunities in AI Engineering, Data Analytics, Data Engineering, Data Science, Business Analysis, and BI. My inbox is always open — feel free to reach out!</p>
+<section id="contact" class="py-32 px-6 text-center relative">
+  <div class="checkered absolute inset-0 opacity-10"></div>
+  <div class="max-w-2xl mx-auto relative z-10">
+    <p class="font-race text-accent text-xs tracking-[0.3em] mb-4 fade-up uppercase">// CHEQUERED FLAG</p>
+    <h2 class="text-4xl md:text-5xl font-race font-black mb-6 fade-up text-white">LET'S <span class="text-accent glow-yellow">RACE</span></h2>
+    <p class="text-muted mb-10 fade-up">I'm currently looking for full-time opportunities in AI Engineering, Data Analytics, Data Engineering, Data Science, Business Analysis, and BI. My pit radio is always open — feel free to reach out!</p>
     <div class="flex flex-wrap justify-center gap-4 fade-up">
-      <a href="mailto:mangrulkarp@northeastern.edu" class="px-6 py-3 bg-gradient-to-r from-accent to-accent2 text-white font-medium rounded-full hover:shadow-lg hover:shadow-accent/30 transition">Say Hello</a>
-      <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="px-6 py-3 border border-border bg-card rounded-full hover:border-accent transition">LinkedIn</a>
-      <a href="https://github.com/Priyanka5317/" target="_blank" class="px-6 py-3 border border-border bg-card rounded-full hover:border-accent transition">GitHub</a>
-      <a href="assets/Priyanka_Mangrulkar_Resume.pdf" target="_blank" class="px-6 py-3 border border-border bg-card rounded-full hover:border-accent transition">Resume</a>
+      <a href="mailto:mangrulkarp@northeastern.edu" class="px-6 py-3 bg-accent text-bg font-race font-bold text-sm tracking-wider rounded hover:bg-white transition uppercase">Pit Radio</a>
+      <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="px-6 py-3 border border-border bg-card rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">LinkedIn</a>
+      <a href="https://github.com/Priyanka5317/" target="_blank" class="px-6 py-3 border border-border bg-card rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">GitHub</a>
+      <a href="assets/Priyanka_Mangrulkar_Resume.pdf" target="_blank" class="px-6 py-3 border border-border bg-card rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">Resume</a>
     </div>
   </div>
 </section>
 
-<footer class="py-8 px-6 text-center text-muted text-xs font-mono border-t border-border">
-  <p>Designed & built by Priyanka Mangrulkar · © 2026</p>
+<footer class="py-8 px-6 text-center text-muted text-xs font-race tracking-wider border-t border-border">
+  <p>ENGINEERED BY PRIYANKA MANGRULKAR · © 2026 · ALL RIGHTS RESERVED</p>
 </footer>
 
 <script>
 // ============ TIMELINE ============
 const timeline = [
-  {
-    side: 'right',
-    date: 'May 2026',
-    title: 'M.S. Information Systems',
-    org: 'Northeastern University · Boston, MA',
-    type: 'education',
-    desc: 'Data Management, Database Design, Data Structures, Data Science with Python.'
-  },
-  {
-    side: 'left',
-    date: 'May 2025 — Dec 2025',
-    title: 'Data Science Co-op',
-    org: 'WhoozCooking · Boston, MA',
-    type: 'work',
-    desc: 'Built ETL pipelines (Python, AWS Glue, Airflow), Redshift star schemas, and Power BI dashboards tracking retention, onboarding, and KPIs. Ran A/B tests and churn analysis.'
-  },
-  {
-    side: 'right',
-    date: 'Aug 2019 — Aug 2023',
-    title: 'B.E. Electronics & Telecommunication',
-    org: 'Savitribai Phule Pune University · India',
-    type: 'education',
-    desc: 'Patent: "Pulse Diagnosis System for Chronic Diseases" (India, 2023).'
-  },
-  {
-    side: 'left',
-    date: 'Apr 2021 — Apr 2022',
-    title: 'Research Analyst',
-    org: 'Team Maverick · Pune, India',
-    type: 'work',
-    desc: 'Improved avionics accuracy by 20% analyzing telemetry with Python & MATLAB. Built predictive models and Tableau dashboards for system diagnostics.'
-  },
+  { side:'right', date:'May 2026', title:'M.S. Information Systems', org:'Northeastern University · Boston, MA', type:'education', desc:'Data Management, Database Design, Data Structures, Data Science with Python.' },
+  { side:'left', date:'May 2025 — Dec 2025', title:'Data Science Co-op', org:'WhoozCooking · Boston, MA', type:'work', desc:'Built ETL pipelines (Python, AWS Glue, Airflow), Redshift star schemas, and Power BI dashboards tracking retention, onboarding, and KPIs. Ran A/B tests and churn analysis.' },
+  { side:'right', date:'Aug 2019 — Aug 2023', title:'B.E. Electronics & Telecommunication', org:'Savitribai Phule Pune University · India', type:'education', desc:'Patent: "Pulse Diagnosis System for Chronic Diseases" (India, 2023).' },
+  { side:'left', date:'Apr 2021 — Apr 2022', title:'Research Analyst', org:'Team Maverick · Pune, India', type:'work', desc:'Improved avionics accuracy by 20% analyzing telemetry with Python & MATLAB. Built predictive models and Tableau dashboards for system diagnostics.' },
 ];
-
 const tl = document.getElementById('timeline');
-timeline.forEach(item => {
+timeline.forEach((item, i) => {
   const div = document.createElement('div');
   div.className = `tl-item ${item.side} fade-up`;
   const icon = item.type === 'work'
@@ -364,12 +458,12 @@ timeline.forEach(item => {
     : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>';
   div.innerHTML = `
     <span class="tl-dot"></span>
-    <div class="bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-lg hover:border-accent transition">
+    <div class="bg-card border border-border rounded-lg p-5 hover:border-accent/50 transition racing-stripe pl-8">
       <div class="flex items-center gap-2 mb-2 ${item.side === 'left' ? 'md:justify-end' : ''}">
-        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-mono text-accent bg-accent/10">${icon}${item.type}</span>
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded text-[0.6rem] font-race text-accent bg-accent/10 tracking-wider uppercase">${icon}${item.type}</span>
         <span class="font-mono text-xs text-muted">${item.date}</span>
       </div>
-      <h3 class="font-semibold text-ink text-lg">${item.title}</h3>
+      <h3 class="font-semibold text-white text-lg">${item.title}</h3>
       <p class="text-accent text-sm mb-2">${item.org}</p>
       <p class="text-muted text-sm">${item.desc}</p>
     </div>
@@ -379,139 +473,86 @@ timeline.forEach(item => {
 
 // ============ PROJECTS ============
 const projects = [
-  {
-    title: "SwipeHire.io",
-    img: "images/swipehire.svg",
-    problem: "Traditional job boards overwhelm candidates with irrelevant listings, while recruiters waste hours sifting through unqualified applications.",
-    solution: "Co-built an AI-powered recruitment platform with swipe-based matching — candidates swipe through curated job cards powered by intelligent algorithms that learn from every interaction.",
-    impact: "Created a streamlined hiring experience that connects talent with opportunities faster, reducing time-to-match for both candidates and employers.",
-    tags: ["AI/ML","Full-Stack","Product"],
-    link: "https://swipehire.io",
-    github: "https://swipehire.io"
-  },
-  {
-    title: "PodcastIQ",
-    img: "images/podcastiq.svg",
-    problem: "Podcast platforms struggle to understand why listeners drop off or which episodes drive engagement.",
-    solution: "Built an analytics pipeline ingesting listening data, applying NLP to transcripts, and surfacing engagement signals through interactive dashboards.",
-    impact: "Surfaced episode-level retention insights that can inform content and recommendation strategy.",
-    tags: ["Python","NLP","Analytics"],
-    github: "https://github.com/Priyanka5317/PodcastIQ"
-  },
-  {
-    title: "WhoozCooking API",
-    img: "images/whoozcooking.svg",
-    problem: "Analytics and product teams lacked a unified backend for querying user, onboarding, and engagement data.",
-    solution: "Engineered a Python-based API and ETL workflows feeding a Redshift warehouse, exposing clean endpoints for dashboards and reporting.",
-    impact: "Reduced data processing time by 50% and unlocked faster, self-serve analytics across the organization.",
-    tags: ["Python","API","ETL","AWS"],
-    github: "https://github.com/Priyanka5317/WhoozCookingAPI"
-  },
-  {
-    title: "F1 Tire Strategy Analysis",
-    img: "images/f1.svg",
-    problem: "F1 race teams need to balance grip vs. durability — a wrong tire call can cost the race.",
-    solution: "Built an R Shiny app merging lap and weather data, applying Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.",
-    impact: "Improved pit strategy success rate by 25% and enabled real-time tactical decisions through interactive simulation.",
-    tags: ["R","Shiny","Survival Analysis"],
-    github: "https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing"
-  },
-  {
-    title: "Employee Retention Analysis",
-    img: "images/employee.svg",
-    problem: "HR teams lacked early warning signals for attrition across tenure and departments.",
-    solution: "Wrote nested SQL queries and CTEs to uncover churn patterns, built stored procedures for ongoing monitoring, and designed dashboards for HR stakeholders.",
-    impact: "Improved early-warning attrition signals by 20%, enabling targeted retention interventions.",
-    tags: ["SQL","HR Analytics","Dashboards"],
-    github: "https://github.com/Priyanka5317/Employee-Analysis"
-  },
-  {
-    title: "E-Commerce Database & Analytics",
-    img: "images/ecommerce.svg",
-    problem: "An e-commerce dataset had slow queries and no real-time reporting for sales and inventory.",
-    solution: "Designed a 15+ table normalized MySQL warehouse with indexing, partitioning, triggers, and stored procedures — connected to Power BI dashboards.",
-    impact: "Optimized queries by 50% and boosted reporting efficiency by 25%, powering real-time revenue and inventory insights.",
-    tags: ["MySQL","Power BI","ETL"],
-    github: "https://github.com/Priyanka5317/"
-  },
-  {
-    title: "Pulse Diagnosis System (Patent)",
-    img: "images/pulse.svg",
-    problem: "Early detection of chronic diseases often requires expensive, invasive testing.",
-    solution: "Built a non-invasive IR-sensor system on Arduino UNO, capturing 1,000+ pulse datasets and developing C/C++ signal-processing algorithms for feature extraction.",
-    impact: "Achieved >90% diagnostic accuracy and secured an Indian Patent (No. 202321031953, 2023).",
-    tags: ["C/C++","Signal Processing","Arduino"],
-    github: "https://github.com/Priyanka5317/"
-  },
-  {
-    title: "Sleep Aid Sentiment Analysis",
-    img: "images/sleep.svg",
-    problem: "Sleep aid marketers lacked visibility into what customers actually valued in product reviews.",
-    solution: "Analyzed 10,000+ Walmart reviews with Pandas, n-grams, and TextBlob sentiment scoring, then visualized trends in Power BI.",
-    impact: "Revealed a 15% higher preference for 10mg doses and elevated review insight quality by 40%, guiding marketing strategy.",
-    tags: ["Python","NLP","Power BI"],
-    github: "https://github.com/Priyanka5317/"
-  },
-  {
-    title: "LeetCode Solutions",
-    img: "images/leetcode.svg",
-    problem: "Staying sharp on data structures and algorithms requires consistent, deliberate practice.",
-    solution: "Maintaining an ongoing repository of LeetCode solutions, organized by topic and difficulty with clean, documented code.",
-    impact: "Built a durable personal reference of 100+ DSA patterns strengthening technical interview readiness.",
-    tags: ["Python","DSA"],
-    github: "https://github.com/Priyanka5317/leetcode"
-  }
+  { title:"SwipeHire.io", img:"images/swipehire.svg", problem:"Traditional job boards overwhelm candidates with irrelevant listings, while recruiters waste hours sifting through unqualified applications.", solution:"Co-built an AI-powered recruitment platform with swipe-based matching — candidates swipe through curated job cards powered by intelligent algorithms that learn from every interaction.", impact:"Created a streamlined hiring experience that connects talent with opportunities faster, reducing time-to-match for both candidates and employers.", tags:["AI/ML","Full-Stack","Product"], github:"https://swipehire.io" },
+  { title:"PodcastIQ", img:"images/podcastiq.svg", problem:"Podcast platforms struggle to understand why listeners drop off or which episodes drive engagement.", solution:"Built an analytics pipeline ingesting listening data, applying NLP to transcripts, and surfacing engagement signals through interactive dashboards.", impact:"Surfaced episode-level retention insights that can inform content and recommendation strategy.", tags:["Python","NLP","Analytics"], github:"https://github.com/Priyanka5317/PodcastIQ" },
+  { title:"WhoozCooking API", img:"images/whoozcooking.svg", problem:"Analytics and product teams lacked a unified backend for querying user, onboarding, and engagement data.", solution:"Engineered a Python-based API and ETL workflows feeding a Redshift warehouse, exposing clean endpoints for dashboards and reporting.", impact:"Reduced data processing time by 50% and unlocked faster, self-serve analytics across the organization.", tags:["Python","API","ETL","AWS"], github:"https://github.com/Priyanka5317/WhoozCookingAPI" },
+  { title:"F1 Tire Strategy Analysis", img:"images/f1.svg", problem:"F1 race teams need to balance grip vs. durability — a wrong tire call can cost the race.", solution:"Built an R Shiny app merging lap and weather data, applying Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.", impact:"Improved pit strategy success rate by 25% and enabled real-time tactical decisions through interactive simulation.", tags:["R","Shiny","Survival Analysis"], github:"https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing" },
+  { title:"Employee Retention Analysis", img:"images/employee.svg", problem:"HR teams lacked early warning signals for attrition across tenure and departments.", solution:"Wrote nested SQL queries and CTEs to uncover churn patterns, built stored procedures for ongoing monitoring, and designed dashboards for HR stakeholders.", impact:"Improved early-warning attrition signals by 20%, enabling targeted retention interventions.", tags:["SQL","HR Analytics","Dashboards"], github:"https://github.com/Priyanka5317/Employee-Analysis" },
+  { title:"E-Commerce Database & Analytics", img:"images/ecommerce.svg", problem:"An e-commerce dataset had slow queries and no real-time reporting for sales and inventory.", solution:"Designed a 15+ table normalized MySQL warehouse with indexing, partitioning, triggers, and stored procedures — connected to Power BI dashboards.", impact:"Optimized queries by 50% and boosted reporting efficiency by 25%, powering real-time revenue and inventory insights.", tags:["MySQL","Power BI","ETL"], github:"https://github.com/Priyanka5317/" },
+  { title:"Pulse Diagnosis System (Patent)", img:"images/pulse.svg", problem:"Early detection of chronic diseases often requires expensive, invasive testing.", solution:"Built a non-invasive IR-sensor system on Arduino UNO, capturing 1,000+ pulse datasets and developing C/C++ signal-processing algorithms for feature extraction.", impact:"Achieved >90% diagnostic accuracy and secured an Indian Patent (No. 202321031953, 2023).", tags:["C/C++","Signal Processing","Arduino"], github:"https://github.com/Priyanka5317/" },
+  { title:"Sleep Aid Sentiment Analysis", img:"images/sleep.svg", problem:"Sleep aid marketers lacked visibility into what customers actually valued in product reviews.", solution:"Analyzed 10,000+ Walmart reviews with Pandas, n-grams, and TextBlob sentiment scoring, then visualized trends in Power BI.", impact:"Revealed a 15% higher preference for 10mg doses and elevated review insight quality by 40%, guiding marketing strategy.", tags:["Python","NLP","Power BI"], github:"https://github.com/Priyanka5317/" },
+  { title:"LeetCode Solutions", img:"images/leetcode.svg", problem:"Staying sharp on data structures and algorithms requires consistent, deliberate practice.", solution:"Maintaining an ongoing repository of LeetCode solutions, organized by topic and difficulty with clean, documented code.", impact:"Built a durable personal reference of 100+ DSA patterns strengthening technical interview readiness.", tags:["Python","DSA"], github:"https://github.com/Priyanka5317/leetcode" }
 ];
-
 const grid = document.getElementById('projects-grid');
-projects.forEach((p) => {
+projects.forEach((p, i) => {
   const el = document.createElement('a');
   el.href = p.github;
   el.target = '_blank';
-  el.className = 'project-card fade-up block bg-card border border-border rounded-2xl overflow-hidden shadow-sm';
+  el.className = 'project-card fade-up block bg-card border border-border rounded-lg overflow-hidden';
   el.innerHTML = `
-    <div class="aspect-[400/220] bg-stone-100 overflow-hidden border-b border-border">
+    <div class="aspect-[400/220] bg-navy overflow-hidden border-b border-border relative">
       <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover"/>
+      <div class="absolute top-2 right-2 bg-accent text-bg font-race text-[0.55rem] font-bold px-2 py-0.5 rounded tracking-wider">P${String(i+1).padStart(2,'0')}</div>
     </div>
     <div class="p-6">
       <div class="flex justify-between items-start mb-4">
-        <h3 class="text-xl font-bold text-ink">${p.title}</h3>
+        <h3 class="text-lg font-bold text-white font-race">${p.title}</h3>
         <svg class="w-5 h-5 text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
       </div>
       <div class="space-y-3 mb-4">
         <div>
-          <p class="psi-label text-accent mb-1">◆ The Problem</p>
+          <p class="psi-label text-accent2 mb-1">▸ THE PROBLEM</p>
           <p class="text-sm text-ink/80">${p.problem}</p>
         </div>
         <div>
-          <p class="psi-label text-accent2 mb-1">◆ The Solution</p>
+          <p class="psi-label text-accent mb-1">▸ THE SOLUTION</p>
           <p class="text-sm text-ink/80">${p.solution}</p>
         </div>
         <div>
-          <p class="psi-label mb-1" style="color:#059669">◆ The Impact</p>
+          <p class="psi-label text-green-400 mb-1">▸ THE IMPACT</p>
           <p class="text-sm text-ink/80">${p.impact}</p>
         </div>
       </div>
       <div class="flex flex-wrap gap-2 pt-3 border-t border-border">
-        ${p.tags.map(t => `<span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-mono text-xs">${t}</span>`).join('')}
+        ${p.tags.map(t => `<span class="px-2 py-1 bg-accent/10 text-accent rounded font-race text-[0.6rem] tracking-wider">${t.toUpperCase()}</span>`).join('')}
       </div>
     </div>
   `;
   grid.appendChild(el);
 });
 
+// ============ CERTIFICATIONS ============
+const certs = [
+  { title:"Anthropic Certified", desc:"Claude AI · Prompt Engineering & AI Applications", org:"Anthropic", color:"accent" },
+  { title:"Microsoft Power BI Data Analyst", desc:"Data Visualization · DAX · Power Query", org:"LinkedIn Learning", color:"blue-400" },
+  { title:"Excel for FP&A", desc:"Financial Planning & Analysis · Advanced Excel", org:"LinkedIn Learning · Jan 2026", color:"green-400" },
+  { title:"Non-Technical Skills of Effective Data Scientists", desc:"Communication · Stakeholder Management · Data Storytelling", org:"LinkedIn Learning · May 2025", color:"orange-400" },
+];
+const certsGrid = document.getElementById('certs-grid');
+certs.forEach((c, i) => {
+  const div = document.createElement('div');
+  div.className = 'p-6 bg-card border border-border rounded-lg hover:border-accent/50 transition group racing-stripe pl-8';
+  div.innerHTML = `
+    <div class="font-race text-accent text-[0.55rem] tracking-[0.3em] mb-3">P${i+1} FINISH</div>
+    <h3 class="font-bold text-white mb-1 text-sm">${c.title}</h3>
+    <p class="text-muted text-xs">${c.desc}</p>
+    <p class="font-mono text-xs text-${c.color} mt-2">${c.org}</p>
+  `;
+  certsGrid.appendChild(div);
+});
+
 // ============ SKILLS ============
 const skills = {
-  lang: ["Python", "R", "SQL", "C/C++", "MATLAB", "Git"],
-  ml: ["Pandas", "NumPy", "Scikit-learn", "Survival Analysis", "Logistic Regression", "Sentiment Analysis", "Predictive Modeling"],
-  bi: ["Power BI", "Tableau", "TIBCO Spotfire", "Looker", "ggplot2", "Seaborn", "Matplotlib", "Excel"],
-  db: ["MySQL", "MS SQL Server", "Oracle", "Redshift", "AWS Glue", "Airflow", "Hadoop", "Apache Avro"]
+  lang: ["Python","R","SQL","C/C++","MATLAB","Git"],
+  ml: ["Pandas","NumPy","Scikit-learn","Survival Analysis","Logistic Regression","Sentiment Analysis","Predictive Modeling"],
+  bi: ["Power BI","Tableau","TIBCO Spotfire","Looker","ggplot2","Seaborn","Matplotlib","Excel"],
+  db: ["MySQL","MS SQL Server","Oracle","Redshift","AWS Glue","Airflow","Hadoop","Apache Avro"]
 };
 Object.entries(skills).forEach(([k, arr]) => {
   const c = document.getElementById('skills-' + k);
   arr.forEach(s => {
     const span = document.createElement('span');
-    span.className = 'skill-pill px-3 py-1.5 bg-card border border-border rounded-full text-xs text-ink cursor-default font-medium';
+    span.className = 'skill-pill px-3 py-1.5 bg-card border border-border rounded text-xs text-ink cursor-default font-mono tracking-wide';
     span.textContent = s;
     c.appendChild(span);
   });
@@ -520,10 +561,7 @@ Object.entries(skills).forEach(([k, arr]) => {
 // ============ SCROLL REVEAL ============
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
