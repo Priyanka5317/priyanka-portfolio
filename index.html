@@ -21,14 +21,14 @@
           mono: ['JetBrains Mono', 'monospace'],
         },
         colors: {
-          bg: '#06081a',
-          card: '#0c1029',
-          border: '#1a2044',
+          bg: '#060816',
+          card: '#0b0e24',
+          border: '#161d3a',
           ink: '#e8eaf6',
           muted: '#7b85a4',
           accent: '#2350d9',
           accent2: '#e10600',
-          navy: '#0a1030',
+          navy: '#0a0f28',
           gold: '#c8a200',
         }
       }
@@ -38,29 +38,26 @@
 <style>
   html { scroll-behavior: smooth; }
   body {
-    background: #06081a;
+    background: #060816;
     color: #e8eaf6;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
   }
 
-  /* Deep carbon fiber - blue tint */
   .carbon-bg {
     background-image:
-      radial-gradient(circle at 1px 1px, rgba(35,80,217,0.03) 1px, transparent 0),
-      linear-gradient(180deg, #06081a 0%, #0a1030 50%, #06081a 100%);
+      radial-gradient(circle at 1px 1px, rgba(35,80,217,0.025) 1px, transparent 0),
+      linear-gradient(180deg, #060816 0%, #0a0f28 50%, #060816 100%);
     background-size: 20px 20px, 100% 100%;
   }
 
-  /* Grid lines - blue tint */
   .grid-lines {
     background-image:
-      linear-gradient(rgba(35,80,217,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(35,80,217,0.05) 1px, transparent 1px);
+      linear-gradient(rgba(35,80,217,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(35,80,217,0.04) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
-  /* Racing stripe - blue to red */
   .racing-stripe { position: relative; }
   .racing-stripe::before {
     content: '';
@@ -77,11 +74,10 @@
   .project-card:hover {
     transform: translateY(-6px) scale(1.01);
     border-color: #2350d9;
-    box-shadow: 0 20px 60px -20px rgba(35, 80, 217, 0.35);
+    box-shadow: 0 20px 60px -20px rgba(35,80,217,0.35);
   }
 
-  .glow-blue { text-shadow: 0 0 40px rgba(35, 80, 217, 0.5); }
-  .glow-red { text-shadow: 0 0 30px rgba(225, 6, 0, 0.4); }
+  .glow-blue { text-shadow: 0 0 40px rgba(35,80,217,0.5); }
 
   .nav-link { position: relative; }
   .nav-link::after {
@@ -100,15 +96,15 @@
     color: #fff;
     border-color: #2350d9;
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(35, 80, 217, 0.3);
+    box-shadow: 0 4px 20px rgba(35,80,217,0.3);
   }
 
   ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: #06081a; }
-  ::-webkit-scrollbar-thumb { background: #1a2044; border-radius: 4px; }
+  ::-webkit-scrollbar-track { background: #060816; }
+  ::-webkit-scrollbar-thumb { background: #161d3a; border-radius: 4px; }
   ::-webkit-scrollbar-thumb:hover { background: #2350d9; }
 
-  /* Start lights animation */
+  /* Start lights */
   @keyframes lightOn {
     0% { background: #1a1a2e; box-shadow: none; }
     100% { background: #e10600; box-shadow: 0 0 30px #e10600; }
@@ -140,13 +136,12 @@
   }
   .float { animation: float 4s ease-in-out infinite; }
 
-  /* Checkered pattern */
   .checkered {
     background-image:
-      linear-gradient(45deg, #1a2044 25%, transparent 25%),
-      linear-gradient(-45deg, #1a2044 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #1a2044 75%),
-      linear-gradient(-45deg, transparent 75%, #1a2044 75%);
+      linear-gradient(45deg, #161d3a 25%, transparent 25%),
+      linear-gradient(-45deg, #161d3a 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #161d3a 75%),
+      linear-gradient(-45deg, transparent 75%, #161d3a 75%);
     background-size: 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   }
@@ -172,13 +167,12 @@
   .tl-item { position: relative; padding-left: 3.5rem; margin-bottom: 3rem; }
   .tl-dot {
     position: absolute;
-    left: 11px;
-    top: 8px;
+    left: 11px; top: 8px;
     width: 22px; height: 22px;
     background: #2350d9;
     border-radius: 50%;
-    border: 3px solid #06081a;
-    box-shadow: 0 0 0 3px #2350d9, 0 0 15px rgba(35, 80, 217, 0.4);
+    border: 3px solid #060816;
+    box-shadow: 0 0 0 3px #2350d9, 0 0 15px rgba(35,80,217,0.4);
     z-index: 2;
   }
   @media (min-width: 768px) {
@@ -193,23 +187,8 @@
     text-transform: uppercase;
   }
 
-  /* Speed lines overlay */
   .speed-lines { position: relative; overflow: hidden; }
-  .speed-lines::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 98%,
-      rgba(35, 80, 217, 0.03) 98%,
-      rgba(35, 80, 217, 0.03) 100%
-    );
-    pointer-events: none;
-  }
 
-  /* RPM meter - blue dominant with red tip */
   @keyframes rpm {
     0% { width: 15%; }
     50% { width: 85%; }
@@ -232,38 +211,107 @@
     color: transparent;
   }
 
-  /* =============================== */
-  /*  F1 CAR ANIMATIONS - VISIBLE    */
-  /* =============================== */
+  /* ======================================== */
+  /*  RB22 HOLOGRAPHIC CARS + DATA OVERLAYS   */
+  /* ======================================== */
 
   .car-track {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     top: 0; left: 0;
     pointer-events: none;
     overflow: hidden;
     z-index: 1;
   }
 
-  /* Car moving left to right */
   @keyframes driveRight {
-    0%   { transform: translateX(-200px); }
-    100% { transform: translateX(calc(100vw + 200px)); }
+    0%   { transform: translateX(-320px); }
+    100% { transform: translateX(calc(100vw + 320px)); }
   }
-
-  /* Car moving right to left (flipped) */
   @keyframes driveLeft {
-    0%   { transform: translateX(calc(100vw + 200px)) scaleX(-1); }
-    100% { transform: translateX(-200px) scaleX(-1); }
+    0%   { transform: translateX(calc(100vw + 320px)) scaleX(-1); }
+    100% { transform: translateX(-320px) scaleX(-1); }
   }
 
-  .rb-car {
+  .rb22-car {
+    position: absolute;
+    pointer-events: none;
+    filter: drop-shadow(0 0 18px rgba(35,80,217,0.35)) drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  }
+
+  /* Holographic scan-line overlay on cars */
+  .holo-wrap {
     position: absolute;
     pointer-events: none;
   }
+  .holo-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(35,80,217,0.06) 2px,
+      rgba(35,80,217,0.06) 4px
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
 
-  /* Speed streak trailing the car */
+  /* Data stream particles */
+  @keyframes dataFloat {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-120px) translateX(30px); opacity: 0; }
+  }
+  .data-particle {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(35,80,217,0.35);
+    pointer-events: none;
+    animation: dataFloat 8s linear infinite;
+  }
+
+  /* Telemetry line */
+  @keyframes telemetryDraw {
+    0% { stroke-dashoffset: 1000; }
+    100% { stroke-dashoffset: 0; }
+  }
+  .telem-line {
+    stroke-dasharray: 1000;
+    animation: telemetryDraw 4s linear infinite;
+  }
+
+  /* Neural network node pulse */
+  @keyframes nodePulse {
+    0%, 100% { r: 2; opacity: 0.15; }
+    50% { r: 4; opacity: 0.4; }
+  }
+  .nn-node {
+    animation: nodePulse 3s ease-in-out infinite;
+  }
+
+  /* Flowing data column */
+  @keyframes dataFlow {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+  .data-col {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    color: rgba(35,80,217,0.12);
+    white-space: pre;
+    pointer-events: none;
+    animation: dataFlow linear infinite;
+    writing-mode: vertical-lr;
+  }
+
+  /* Streak behind cars */
   @keyframes streakMove {
     0% { transform: translateX(-100%); opacity: 0; }
     15% { opacity: 1; }
@@ -273,17 +321,31 @@
   .streak {
     position: absolute;
     height: 1px;
-    width: 180px;
+    width: 200px;
     pointer-events: none;
     opacity: 0;
   }
   .streak-blue {
-    background: linear-gradient(90deg, transparent, rgba(35,80,217,0.25), transparent);
+    background: linear-gradient(90deg, transparent, rgba(35,80,217,0.3), transparent);
     animation: streakMove 5s linear infinite;
   }
   .streak-red {
     background: linear-gradient(90deg, transparent, rgba(225,6,0,0.15), transparent);
     animation: streakMove 6s linear infinite;
+  }
+
+  /* Telemetry readout bar */
+  .telem-bar {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.06;
+  }
+  @keyframes telemScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .telem-scroll {
+    animation: telemScroll 20s linear infinite;
   }
 </style>
 </head>
@@ -305,39 +367,124 @@
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ========================================= -->
+<!--  HERO                                     -->
+<!-- ========================================= -->
 <section id="home" class="min-h-screen flex items-center px-6 pt-20 grid-lines relative">
-  <!-- Speed streaks ambient -->
+  <!-- Data columns (matrix-style) -->
+  <div class="car-track" style="z-index:0;">
+    <div class="data-col" style="left:5%; animation-duration:25s; animation-delay:0s;">0x4F 0.92 NaN 1.07 η=0.3 ΔL=4.2 λ=0.01 σ²=0.8 μ=3.1 R²=0.94 p<0.05 β=1.2</div>
+    <div class="data-col" style="left:18%; animation-duration:30s; animation-delay:3s;">loss=0.04 acc=97% f1=0.91 AUC=0.88 epochs=50 lr=3e-4 batch=32 grad=∇</div>
+    <div class="data-col" style="left:75%; animation-duration:28s; animation-delay:6s;">SELECT * JOIN GROUP BY HAVING AVG SUM COUNT PARTITION ROW_NUMBER OVER</div>
+    <div class="data-col" style="left:90%; animation-duration:22s; animation-delay:1s;">ETL → λ → S3 → Glue → Redshift → dbt → Power BI → Insights → $$</div>
+  </div>
+
+  <!-- Telemetry SVG overlay -->
+  <div class="car-track" style="z-index:0;">
+    <svg width="100%" height="100%" style="position:absolute;top:0;left:0;opacity:0.06;">
+      <polyline class="telem-line" points="0,200 80,180 160,220 240,170 320,210 400,160 480,190 560,140 640,180 720,120 800,160 880,130 960,170 1040,110 1120,150 1200,100 1280,140 1360,90 1440,130" fill="none" stroke="#2350d9" stroke-width="1.5"/>
+      <polyline class="telem-line" style="animation-delay:2s;" points="0,350 80,330 160,370 240,310 320,340 400,290 480,360 560,280 640,320 720,270 800,310 880,260 960,300 1040,250 1120,290 1200,240 1280,280 1360,230 1440,270" fill="none" stroke="#e10600" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <!-- Neural network nodes (sparse) -->
+  <div class="car-track" style="z-index:0;">
+    <svg width="100%" height="100%" style="position:absolute;top:0;left:0;opacity:0.15;">
+      <circle class="nn-node" cx="15%" cy="20%" r="2" fill="#2350d9" style="animation-delay:0s;"/>
+      <circle class="nn-node" cx="25%" cy="45%" r="2" fill="#2350d9" style="animation-delay:0.8s;"/>
+      <circle class="nn-node" cx="10%" cy="70%" r="2" fill="#2350d9" style="animation-delay:1.6s;"/>
+      <circle class="nn-node" cx="80%" cy="25%" r="2" fill="#2350d9" style="animation-delay:0.4s;"/>
+      <circle class="nn-node" cx="88%" cy="55%" r="2" fill="#e10600" style="animation-delay:1.2s;"/>
+      <circle class="nn-node" cx="72%" cy="80%" r="2" fill="#2350d9" style="animation-delay:2s;"/>
+      <line x1="15%" y1="20%" x2="25%" y2="45%" stroke="#2350d9" stroke-width="0.5" opacity="0.3"/>
+      <line x1="25%" y1="45%" x2="10%" y2="70%" stroke="#2350d9" stroke-width="0.5" opacity="0.2"/>
+      <line x1="80%" y1="25%" x2="88%" y2="55%" stroke="#2350d9" stroke-width="0.5" opacity="0.3"/>
+      <line x1="88%" y1="55%" x2="72%" y2="80%" stroke="#e10600" stroke-width="0.5" opacity="0.2"/>
+    </svg>
+  </div>
+
+  <!-- Streaks -->
   <div class="car-track">
     <div class="streak streak-blue" style="top:28%; animation-delay:0s;"></div>
     <div class="streak streak-red" style="top:62%; animation-delay:2.5s;"></div>
-    <div class="streak streak-blue" style="top:82%; animation-delay:4s;"></div>
+    <div class="streak streak-blue" style="top:85%; animation-delay:4.5s;"></div>
   </div>
 
-  <!-- RB22 car crossing hero -->
+  <!-- ===== RB22 #1 — Hero flyby after start lights ===== -->
   <div class="car-track">
-    <svg class="rb-car" style="top:72%; width:160px; height:50px; animation: driveRight 9s linear 6s infinite;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
-      <!-- RB22 body - navy blue dominant -->
-      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
-      <!-- Red accent stripe -->
-      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600"/>
-      <!-- Cockpit -->
-      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a"/>
-      <!-- Front wing -->
-      <path d="M8 36 L3 34 L3 38 L20 38 L20 36Z" fill="#1a2d6b"/>
-      <rect x="3" y="33" width="18" height="2" fill="#e10600" opacity="0.8"/>
-      <!-- Rear wing -->
-      <rect x="140" y="12" width="16" height="3" rx="1" fill="#1a2d6b"/>
-      <rect x="140" y="16" width="16" height="2" fill="#e10600" opacity="0.7"/>
-      <rect x="147" y="16" width="3" height="20" fill="#1a2d6b" opacity="0.6"/>
-      <!-- Tires -->
-      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
-      <ellipse cx="32" cy="39" rx="5" ry="5" fill="#444"/>
-      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
-      <ellipse cx="130" cy="39" rx="5" ry="5" fill="#444"/>
-      <!-- Small gold number -->
-      <text x="95" y="27" font-family="sans-serif" font-size="7" fill="#c8a200" font-weight="bold">1</text>
-    </svg>
+    <div class="holo-wrap rb22-car" style="top:70%; width:280px; height:80px; animation: driveRight 8s linear 6s infinite;">
+      <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="280" height="80">
+        <defs>
+          <linearGradient id="bodyH" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e3a7a"/>
+            <stop offset="50%" stop-color="#142658"/>
+            <stop offset="100%" stop-color="#0c1a3d"/>
+          </linearGradient>
+          <linearGradient id="wingH" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1a2d6b"/>
+            <stop offset="100%" stop-color="#142050"/>
+          </linearGradient>
+          <radialGradient id="tireH">
+            <stop offset="0%" stop-color="#555"/>
+            <stop offset="50%" stop-color="#333"/>
+            <stop offset="100%" stop-color="#111"/>
+          </radialGradient>
+          <filter id="glow1">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Floor / plank -->
+        <rect x="30" y="60" width="210" height="3" rx="1" fill="#0c1a3d" opacity="0.8"/>
+        <!-- Main body -->
+        <path d="M18 58 L38 58 L42 50 L55 44 L75 38 L100 30 L130 24 L155 21 L180 20 L210 21 L230 24 L245 30 L252 40 L255 50 L255 58 L18 58Z" fill="url(#bodyH)"/>
+        <!-- Sidepod inlet -->
+        <path d="M120 32 L140 28 L155 26 L155 34 L135 36Z" fill="#1a2d6b" opacity="0.6"/>
+        <!-- Engine cover / airbox -->
+        <path d="M155 21 L160 14 L168 12 L176 14 L180 20" fill="#142658" stroke="#1a2d6b" stroke-width="0.5"/>
+        <!-- Halo -->
+        <path d="M145 26 L152 16 L172 14 L180 22" fill="none" stroke="#888" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Cockpit opening -->
+        <ellipse cx="162" cy="22" rx="10" ry="5" fill="#060816"/>
+        <!-- Red accent stripe across body -->
+        <rect x="95" y="33" width="80" height="5" rx="1" fill="#e10600" opacity="0.9"/>
+        <!-- Oracle text placeholder (small red block) -->
+        <rect x="100" y="40" width="30" height="3" rx="1" fill="#e10600" opacity="0.5"/>
+        <!-- Front wing assembly -->
+        <path d="M12 58 L5 54 L5 60 L35 62 L35 58Z" fill="url(#wingH)"/>
+        <rect x="5" y="52" width="30" height="2.5" rx="1" fill="#e10600" opacity="0.85"/>
+        <rect x="5" y="56" width="28" height="1" fill="#e10600" opacity="0.4"/>
+        <!-- Front wing endplate -->
+        <rect x="4" y="50" width="3" height="14" rx="1" fill="#142658"/>
+        <!-- Nose cone -->
+        <path d="M35 52 L18 55 L18 58 L35 58Z" fill="#142658"/>
+        <!-- Rear wing -->
+        <rect x="240" y="14" width="28" height="4" rx="1" fill="url(#wingH)"/>
+        <rect x="240" y="19" width="28" height="3" rx="1" fill="#e10600" opacity="0.75"/>
+        <rect x="240" y="23" width="28" height="2" rx="1" fill="#142658" opacity="0.5"/>
+        <!-- Rear wing endplate -->
+        <rect x="238" y="12" width="3" height="18" rx="1" fill="#142658"/>
+        <rect x="268" y="12" width="3" height="18" rx="1" fill="#142658"/>
+        <!-- DRS strut -->
+        <rect x="252" y="26" width="2.5" height="30" fill="#142658" opacity="0.6"/>
+        <!-- Rear diffuser -->
+        <path d="M248 58 L258 62 L268 58" fill="#0c1a3d" opacity="0.6"/>
+        <!-- Exhaust glow -->
+        <ellipse cx="260" cy="50" rx="3" ry="2" fill="#e10600" opacity="0.3" filter="url(#glow1)"/>
+        <!-- Front tires -->
+        <ellipse cx="48" cy="62" rx="13" ry="13" fill="url(#tireH)"/>
+        <ellipse cx="48" cy="62" rx="7" ry="7" fill="#444"/>
+        <ellipse cx="48" cy="62" rx="3" ry="3" fill="#666"/>
+        <!-- Rear tires (wider) -->
+        <ellipse cx="228" cy="62" rx="15" ry="14" fill="url(#tireH)"/>
+        <ellipse cx="228" cy="62" rx="8" ry="8" fill="#444"/>
+        <ellipse cx="228" cy="62" rx="3.5" ry="3.5" fill="#666"/>
+        <!-- Number 1 in gold -->
+        <text x="175" y="38" font-family="'Orbitron',sans-serif" font-size="9" fill="#c8a200" font-weight="bold">1</text>
+        <!-- Holographic blue edge glow -->
+        <path d="M18 58 L38 58 L42 50 L55 44 L75 38 L100 30 L130 24 L155 21 L180 20 L210 21 L230 24 L245 30 L252 40 L255 50 L255 58" fill="none" stroke="#2350d9" stroke-width="0.8" opacity="0.4"/>
+      </svg>
+    </div>
   </div>
 
   <div class="max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-12 items-center relative z-10">
@@ -358,9 +505,8 @@
       </h1>
       <p class="text-xl md:text-2xl text-ink mb-2 fade-up font-semibold">AI Engineer · Data Analyst · Data Scientist</p>
       <p class="text-muted mb-1 fade-up font-medium text-sm">Data Engineer · Business Analyst · BI Developer</p>
-      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based engineer at the intersection of AI and data — building intelligent systems, wrangling complex datasets, and turning raw signals into actionable insights.</p>
+      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based engineer at the intersection of AI and data — building intelligent systems, designing pipelines, and turning raw data into actionable insights.</p>
 
-      <!-- Badges -->
       <div class="flex flex-wrap gap-2 mb-6 fade-up">
         <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent/10 border border-accent/30 rounded text-xs font-race text-accent tracking-wider">
           <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
@@ -388,16 +534,47 @@
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ========================================= -->
+<!--  ABOUT                                    -->
+<!-- ========================================= -->
 <section id="about" class="py-24 px-6 speed-lines relative">
-  <!-- Car cruising through about section -->
+  <!-- Slower background car -->
   <div class="car-track">
-    <svg class="rb-car" style="top:40%; width:140px; height:44px; animation: driveLeft 16s linear 2s infinite;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b" opacity="0.5"/>
-      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600" opacity="0.4"/>
-      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a" opacity="0.5"/>
-      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222" opacity="0.5"/>
-      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222" opacity="0.5"/>
+    <div class="holo-wrap rb22-car" style="top:45%; width:220px; height:65px; animation: driveLeft 18s linear 2s infinite; opacity:0.35;">
+      <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="220" height="65">
+        <defs>
+          <linearGradient id="bodyA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e3a7a"/>
+            <stop offset="100%" stop-color="#0c1a3d"/>
+          </linearGradient>
+        </defs>
+        <rect x="30" y="60" width="210" height="3" rx="1" fill="#0c1a3d" opacity="0.5"/>
+        <path d="M18 58 L38 58 L42 50 L55 44 L75 38 L100 30 L130 24 L155 21 L180 20 L210 21 L230 24 L245 30 L252 40 L255 58 L18 58Z" fill="url(#bodyA)"/>
+        <rect x="95" y="33" width="80" height="5" rx="1" fill="#e10600" opacity="0.7"/>
+        <path d="M155 21 L160 14 L168 12 L176 14 L180 20" fill="#142658"/>
+        <path d="M145 26 L152 16 L172 14 L180 22" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="162" cy="22" rx="10" ry="5" fill="#060816"/>
+        <path d="M12 58 L5 54 L5 60 L35 62 L35 58Z" fill="#142658"/>
+        <rect x="5" y="52" width="30" height="2.5" rx="1" fill="#e10600" opacity="0.6"/>
+        <rect x="240" y="14" width="28" height="4" rx="1" fill="#142658"/>
+        <rect x="240" y="19" width="28" height="3" rx="1" fill="#e10600" opacity="0.5"/>
+        <rect x="252" y="24" width="2.5" height="30" fill="#142658" opacity="0.4"/>
+        <ellipse cx="48" cy="62" rx="13" ry="13" fill="#222"/>
+        <ellipse cx="48" cy="62" rx="7" ry="7" fill="#333"/>
+        <ellipse cx="228" cy="62" rx="15" ry="14" fill="#222"/>
+        <ellipse cx="228" cy="62" rx="8" ry="8" fill="#333"/>
+        <text x="175" y="38" font-family="'Orbitron',sans-serif" font-size="9" fill="#c8a200" font-weight="bold">11</text>
+        <path d="M18 58 L42 50 L75 38 L130 24 L180 20 L230 24 L252 40 L255 58" fill="none" stroke="#2350d9" stroke-width="0.6" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Neural net sparse nodes for this section -->
+  <div class="car-track" style="z-index:0;">
+    <svg width="100%" height="100%" style="position:absolute;top:0;left:0;opacity:0.1;">
+      <circle class="nn-node" cx="8%" cy="30%" r="2" fill="#2350d9" style="animation-delay:0.5s;"/>
+      <circle class="nn-node" cx="92%" cy="60%" r="2" fill="#2350d9" style="animation-delay:1.5s;"/>
+      <line x1="8%" y1="30%" x2="92%" y2="60%" stroke="#2350d9" stroke-width="0.3" opacity="0.15" stroke-dasharray="4 8"/>
     </svg>
   </div>
 
@@ -436,7 +613,9 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- ========================================= -->
+<!--  EXPERIENCE                               -->
+<!-- ========================================= -->
 <section id="experience" class="py-24 px-6 relative">
   <div class="car-track">
     <div class="streak streak-blue" style="top:30%; animation-delay:1s;"></div>
@@ -452,34 +631,89 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ========================================= -->
+<!--  PROJECTS                                 -->
+<!-- ========================================= -->
 <section id="projects" class="py-24 px-6 speed-lines relative">
-  <!-- Two cars racing across projects -->
+  <!-- Primary RB22 — full detail, racing across projects -->
   <div class="car-track">
-    <!-- Lead car - full RB22 -->
-    <svg class="rb-car" style="top:20%; width:150px; height:48px; animation: driveRight 11s linear 1s infinite;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
-      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600"/>
-      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a"/>
-      <path d="M8 36 L3 34 L3 38 L20 38 L20 36Z" fill="#1a2d6b"/>
-      <rect x="3" y="33" width="18" height="2" fill="#e10600" opacity="0.8"/>
-      <rect x="140" y="12" width="16" height="3" rx="1" fill="#1a2d6b"/>
-      <rect x="140" y="16" width="16" height="2" fill="#e10600" opacity="0.7"/>
-      <rect x="147" y="16" width="3" height="20" fill="#1a2d6b" opacity="0.6"/>
-      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
-      <ellipse cx="32" cy="39" rx="5" ry="5" fill="#444"/>
-      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
-      <ellipse cx="130" cy="39" rx="5" ry="5" fill="#444"/>
-      <text x="95" y="27" font-family="sans-serif" font-size="7" fill="#c8a200" font-weight="bold">1</text>
-    </svg>
-    <!-- Chasing car - slightly behind -->
-    <svg class="rb-car" style="top:72%; width:130px; height:42px; animation: driveLeft 14s linear 4s infinite; opacity:0.45;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
-      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600" opacity="0.8"/>
-      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a"/>
-      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
-      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
-      <text x="95" y="27" font-family="sans-serif" font-size="7" fill="#c8a200" font-weight="bold">11</text>
+    <div class="holo-wrap rb22-car" style="top:15%; width:280px; height:80px; animation: driveRight 10s linear 0s infinite;">
+      <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="280" height="80">
+        <defs>
+          <linearGradient id="bodyP" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e3a7a"/><stop offset="50%" stop-color="#142658"/><stop offset="100%" stop-color="#0c1a3d"/>
+          </linearGradient>
+          <radialGradient id="tireP"><stop offset="0%" stop-color="#555"/><stop offset="50%" stop-color="#333"/><stop offset="100%" stop-color="#111"/></radialGradient>
+          <filter id="glow2"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect x="30" y="60" width="210" height="3" rx="1" fill="#0c1a3d" opacity="0.8"/>
+        <path d="M18 58 L38 58 L42 50 L55 44 L75 38 L100 30 L130 24 L155 21 L180 20 L210 21 L230 24 L245 30 L252 40 L255 50 L255 58 L18 58Z" fill="url(#bodyP)"/>
+        <path d="M120 32 L140 28 L155 26 L155 34 L135 36Z" fill="#1a2d6b" opacity="0.6"/>
+        <path d="M155 21 L160 14 L168 12 L176 14 L180 20" fill="#142658" stroke="#1a2d6b" stroke-width="0.5"/>
+        <path d="M145 26 L152 16 L172 14 L180 22" fill="none" stroke="#888" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="162" cy="22" rx="10" ry="5" fill="#060816"/>
+        <rect x="95" y="33" width="80" height="5" rx="1" fill="#e10600" opacity="0.9"/>
+        <rect x="100" y="40" width="30" height="3" rx="1" fill="#e10600" opacity="0.5"/>
+        <path d="M12 58 L5 54 L5 60 L35 62 L35 58Z" fill="#142658"/>
+        <rect x="5" y="52" width="30" height="2.5" rx="1" fill="#e10600" opacity="0.85"/>
+        <rect x="5" y="56" width="28" height="1" fill="#e10600" opacity="0.4"/>
+        <rect x="4" y="50" width="3" height="14" rx="1" fill="#142658"/>
+        <path d="M35 52 L18 55 L18 58 L35 58Z" fill="#142658"/>
+        <rect x="240" y="14" width="28" height="4" rx="1" fill="#142658"/>
+        <rect x="240" y="19" width="28" height="3" rx="1" fill="#e10600" opacity="0.75"/>
+        <rect x="240" y="23" width="28" height="2" rx="1" fill="#142658" opacity="0.5"/>
+        <rect x="238" y="12" width="3" height="18" rx="1" fill="#142658"/>
+        <rect x="268" y="12" width="3" height="18" rx="1" fill="#142658"/>
+        <rect x="252" y="26" width="2.5" height="30" fill="#142658" opacity="0.6"/>
+        <path d="M248 58 L258 62 L268 58" fill="#0c1a3d" opacity="0.6"/>
+        <ellipse cx="260" cy="50" rx="3" ry="2" fill="#e10600" opacity="0.3" filter="url(#glow2)"/>
+        <ellipse cx="48" cy="62" rx="13" ry="13" fill="url(#tireP)"/>
+        <ellipse cx="48" cy="62" rx="7" ry="7" fill="#444"/>
+        <ellipse cx="48" cy="62" rx="3" ry="3" fill="#666"/>
+        <ellipse cx="228" cy="62" rx="15" ry="14" fill="url(#tireP)"/>
+        <ellipse cx="228" cy="62" rx="8" ry="8" fill="#444"/>
+        <ellipse cx="228" cy="62" rx="3.5" ry="3.5" fill="#666"/>
+        <text x="175" y="38" font-family="'Orbitron',sans-serif" font-size="9" fill="#c8a200" font-weight="bold">1</text>
+        <path d="M18 58 L42 50 L75 38 L130 24 L180 20 L230 24 L252 40 L255 58" fill="none" stroke="#2350d9" stroke-width="0.8" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Second car — opposite direction -->
+    <div class="holo-wrap rb22-car" style="top:78%; width:240px; height:70px; animation: driveLeft 13s linear 5s infinite; opacity:0.4;">
+      <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="240" height="70">
+        <defs>
+          <linearGradient id="bodyP2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e3a7a"/><stop offset="100%" stop-color="#0c1a3d"/>
+          </linearGradient>
+        </defs>
+        <rect x="30" y="60" width="210" height="3" rx="1" fill="#0c1a3d" opacity="0.6"/>
+        <path d="M18 58 L38 58 L42 50 L55 44 L75 38 L100 30 L130 24 L155 21 L180 20 L210 21 L230 24 L245 30 L252 40 L255 58 L18 58Z" fill="url(#bodyP2)"/>
+        <rect x="95" y="33" width="80" height="5" rx="1" fill="#e10600" opacity="0.7"/>
+        <path d="M155 21 L160 14 L168 12 L176 14 L180 20" fill="#142658"/>
+        <path d="M145 26 L152 16 L172 14 L180 22" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="162" cy="22" rx="10" ry="5" fill="#060816"/>
+        <path d="M12 58 L5 54 L5 60 L35 62 L35 58Z" fill="#142658"/>
+        <rect x="5" y="52" width="30" height="2.5" rx="1" fill="#e10600" opacity="0.6"/>
+        <rect x="240" y="14" width="28" height="4" rx="1" fill="#142658"/>
+        <rect x="240" y="19" width="28" height="3" rx="1" fill="#e10600" opacity="0.5"/>
+        <rect x="252" y="24" width="2.5" height="30" fill="#142658" opacity="0.4"/>
+        <ellipse cx="48" cy="62" rx="13" ry="13" fill="#222"/>
+        <ellipse cx="48" cy="62" rx="7" ry="7" fill="#333"/>
+        <ellipse cx="228" cy="62" rx="15" ry="14" fill="#222"/>
+        <ellipse cx="228" cy="62" rx="8" ry="8" fill="#333"/>
+        <text x="175" y="38" font-family="'Orbitron',sans-serif" font-size="9" fill="#c8a200" font-weight="bold">11</text>
+        <path d="M18 58 L42 50 L75 38 L130 24 L180 20 L230 24 L252 40 L255 58" fill="none" stroke="#2350d9" stroke-width="0.6" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Telemetry readout scrolling -->
+  <div class="car-track" style="z-index:0;">
+    <svg class="telem-bar" style="top:92%; left:0;" width="200%" height="30">
+      <g class="telem-scroll">
+        <text x="0" y="12" font-family="'JetBrains Mono',monospace" font-size="9" fill="#2350d9">THROTTLE 98% · BRAKE 0% · DRS OPEN · GEAR 8 · RPM 11,400 · SPEED 342 km/h · TIRE TEMP 105°C · ERS DEPLOY · FUEL 1.1kg/lap · GAP -0.003s · </text>
+        <text x="800" y="12" font-family="'JetBrains Mono',monospace" font-size="9" fill="#2350d9">THROTTLE 98% · BRAKE 0% · DRS OPEN · GEAR 8 · RPM 11,400 · SPEED 342 km/h · TIRE TEMP 105°C · ERS DEPLOY · FUEL 1.1kg/lap · GAP -0.003s · </text>
+      </g>
     </svg>
   </div>
 
@@ -494,8 +728,15 @@
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ========================================= -->
+<!--  SKILLS                                   -->
+<!-- ========================================= -->
 <section id="skills" class="py-24 px-6 relative">
+  <div class="car-track" style="z-index:0;">
+    <svg width="100%" height="100%" style="position:absolute;top:0;left:0;opacity:0.06;">
+      <polyline class="telem-line" style="animation-duration:6s;" points="0,80 60,60 120,90 180,50 240,70 300,40 360,60 420,30 480,55 540,25 600,50 660,20 720,45 780,15 840,40 900,10 960,35 1020,5 1080,30 1140,0" fill="none" stroke="#2350d9" stroke-width="1"/>
+    </svg>
+  </div>
   <div class="car-track">
     <div class="streak streak-blue" style="top:35%; animation-delay:0.5s;"></div>
     <div class="streak streak-red" style="top:70%; animation-delay:2.5s;"></div>
@@ -527,15 +768,21 @@
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
+<!-- ========================================= -->
+<!--  CERTIFICATIONS                           -->
+<!-- ========================================= -->
 <section id="certifications" class="py-24 px-6 speed-lines relative">
   <div class="car-track">
-    <svg class="rb-car" style="top:55%; width:130px; height:42px; animation: driveRight 15s linear 3s infinite; opacity:0.35;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
-      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600" opacity="0.7"/>
-      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
-      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
-    </svg>
+    <div class="holo-wrap rb22-car" style="top:50%; width:200px; height:58px; animation: driveRight 16s linear 2s infinite; opacity:0.3;">
+      <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="200" height="58">
+        <path d="M18 58 L38 58 L42 50 L55 44 L75 38 L100 30 L130 24 L155 21 L180 20 L210 21 L230 24 L245 30 L252 40 L255 58 L18 58Z" fill="#142658"/>
+        <rect x="95" y="33" width="80" height="5" rx="1" fill="#e10600" opacity="0.6"/>
+        <path d="M145 26 L152 16 L172 14 L180 22" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="48" cy="62" rx="13" ry="13" fill="#222"/>
+        <ellipse cx="228" cy="62" rx="15" ry="14" fill="#222"/>
+        <path d="M18 58 L42 50 L75 38 L130 24 L180 20 L230 24 L252 40 L255 58" fill="none" stroke="#2350d9" stroke-width="0.6" opacity="0.3"/>
+      </svg>
+    </div>
   </div>
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="flex items-center gap-4 mb-10 fade-up">
@@ -547,27 +794,53 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ========================================= -->
+<!--  CONTACT                                  -->
+<!-- ========================================= -->
 <section id="contact" class="py-32 px-6 text-center relative">
   <div class="checkered absolute inset-0 opacity-10"></div>
-  <!-- Victory lap car -->
+
+  <!-- Victory lap — fastest car, full detail -->
   <div class="car-track">
-    <svg class="rb-car" style="top:25%; width:160px; height:50px; animation: driveRight 8s linear 0s infinite;" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 36 L22 36 L26 30 L40 26 L60 22 L80 17 L105 15 L130 16 L142 20 L150 28 L152 36 L8 36Z" fill="#1a2d6b"/>
-      <rect x="65" y="18" width="45" height="5" rx="1" fill="#e10600"/>
-      <rect x="72" y="14" width="14" height="7" rx="2" fill="#06081a"/>
-      <path d="M8 36 L3 34 L3 38 L20 38 L20 36Z" fill="#1a2d6b"/>
-      <rect x="3" y="33" width="18" height="2" fill="#e10600" opacity="0.8"/>
-      <rect x="140" y="12" width="16" height="3" rx="1" fill="#1a2d6b"/>
-      <rect x="140" y="16" width="16" height="2" fill="#e10600" opacity="0.7"/>
-      <rect x="147" y="16" width="3" height="20" fill="#1a2d6b" opacity="0.6"/>
-      <ellipse cx="32" cy="39" rx="9" ry="9" fill="#222"/>
-      <ellipse cx="32" cy="39" rx="5" ry="5" fill="#444"/>
-      <ellipse cx="130" cy="39" rx="9" ry="9" fill="#222"/>
-      <ellipse cx="130" cy="39" rx="5" ry="5" fill="#444"/>
-      <text x="95" y="27" font-family="sans-serif" font-size="7" fill="#c8a200" font-weight="bold">1</text>
-    </svg>
+    <div class="holo-wrap rb22-car" style="top:22%; width:280px; height:80px; animation: driveRight 7s linear 0s infinite;">
+      <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="280" height="80">
+        <defs>
+          <linearGradient id="bodyC" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e3a7a"/><stop offset="50%" stop-color="#142658"/><stop offset="100%" stop-color="#0c1a3d"/>
+          </linearGradient>
+          <radialGradient id="tireC"><stop offset="0%" stop-color="#555"/><stop offset="50%" stop-color="#333"/><stop offset="100%" stop-color="#111"/></radialGradient>
+          <filter id="glow3"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect x="30" y="60" width="210" height="3" rx="1" fill="#0c1a3d" opacity="0.8"/>
+        <path d="M18 58 L38 58 L42 50 L55 44 L75 38 L100 30 L130 24 L155 21 L180 20 L210 21 L230 24 L245 30 L252 40 L255 50 L255 58 L18 58Z" fill="url(#bodyC)"/>
+        <path d="M120 32 L140 28 L155 26 L155 34 L135 36Z" fill="#1a2d6b" opacity="0.6"/>
+        <path d="M155 21 L160 14 L168 12 L176 14 L180 20" fill="#142658" stroke="#1a2d6b" stroke-width="0.5"/>
+        <path d="M145 26 L152 16 L172 14 L180 22" fill="none" stroke="#888" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="162" cy="22" rx="10" ry="5" fill="#060816"/>
+        <rect x="95" y="33" width="80" height="5" rx="1" fill="#e10600" opacity="0.9"/>
+        <rect x="100" y="40" width="30" height="3" rx="1" fill="#e10600" opacity="0.5"/>
+        <path d="M12 58 L5 54 L5 60 L35 62 L35 58Z" fill="#142658"/>
+        <rect x="5" y="52" width="30" height="2.5" rx="1" fill="#e10600" opacity="0.85"/>
+        <rect x="4" y="50" width="3" height="14" rx="1" fill="#142658"/>
+        <path d="M35 52 L18 55 L18 58 L35 58Z" fill="#142658"/>
+        <rect x="240" y="14" width="28" height="4" rx="1" fill="#142658"/>
+        <rect x="240" y="19" width="28" height="3" rx="1" fill="#e10600" opacity="0.75"/>
+        <rect x="238" y="12" width="3" height="18" rx="1" fill="#142658"/>
+        <rect x="268" y="12" width="3" height="18" rx="1" fill="#142658"/>
+        <rect x="252" y="26" width="2.5" height="30" fill="#142658" opacity="0.6"/>
+        <ellipse cx="260" cy="50" rx="3" ry="2" fill="#e10600" opacity="0.3" filter="url(#glow3)"/>
+        <ellipse cx="48" cy="62" rx="13" ry="13" fill="url(#tireC)"/>
+        <ellipse cx="48" cy="62" rx="7" ry="7" fill="#444"/>
+        <ellipse cx="48" cy="62" rx="3" ry="3" fill="#666"/>
+        <ellipse cx="228" cy="62" rx="15" ry="14" fill="url(#tireC)"/>
+        <ellipse cx="228" cy="62" rx="8" ry="8" fill="#444"/>
+        <ellipse cx="228" cy="62" rx="3.5" ry="3.5" fill="#666"/>
+        <text x="175" y="38" font-family="'Orbitron',sans-serif" font-size="9" fill="#c8a200" font-weight="bold">1</text>
+        <path d="M18 58 L42 50 L75 38 L130 24 L180 20 L230 24 L252 40 L255 58" fill="none" stroke="#2350d9" stroke-width="0.8" opacity="0.4"/>
+      </svg>
+    </div>
   </div>
+
   <div class="max-w-2xl mx-auto relative z-10">
     <p class="font-race text-accent text-xs tracking-[0.3em] mb-4 fade-up uppercase">// Finish Line</p>
     <h2 class="text-4xl md:text-5xl font-race font-black mb-6 fade-up text-white">LET'S <span class="text-accent glow-blue">CONNECT</span></h2>
@@ -614,7 +887,7 @@ timeline.forEach((item, i) => {
   tl.appendChild(div);
 });
 
-// ============ PROJECTS ============
+// ============ PROJECTS (no LeetCode) ============
 const projects = [
   { title:"SwipeHire.io", img:"images/swipehire.svg", problem:"Traditional job boards overwhelm candidates with irrelevant listings, while recruiters waste hours sifting through unqualified applications.", solution:"Co-built an AI-powered recruitment platform with swipe-based matching — candidates swipe through curated job cards powered by intelligent algorithms that learn from every interaction.", impact:"Created a streamlined hiring experience that connects talent with opportunities faster, reducing time-to-match for both candidates and employers.", tags:["AI/ML","Full-Stack","Product"], github:"https://swipehire.io" },
   { title:"PodcastIQ", img:"images/podcastiq.svg", problem:"Podcast platforms struggle to understand why listeners drop off or which episodes drive engagement.", solution:"Built an analytics pipeline ingesting listening data, applying NLP to transcripts, and surfacing engagement signals through interactive dashboards.", impact:"Surfaced episode-level retention insights that can inform content and recommendation strategy.", tags:["Python","NLP","Analytics"], github:"https://github.com/Priyanka5317/PodcastIQ" },
@@ -624,7 +897,6 @@ const projects = [
   { title:"E-Commerce Database & Analytics", img:"images/ecommerce.svg", problem:"An e-commerce dataset had slow queries and no real-time reporting for sales and inventory.", solution:"Designed a 15+ table normalized MySQL warehouse with indexing, partitioning, triggers, and stored procedures — connected to Power BI dashboards.", impact:"Optimized queries by 50% and boosted reporting efficiency by 25%, powering real-time revenue and inventory insights.", tags:["MySQL","Power BI","ETL"], github:"https://github.com/Priyanka5317/" },
   { title:"Pulse Diagnosis System (Patent)", img:"images/pulse.svg", problem:"Early detection of chronic diseases often requires expensive, invasive testing.", solution:"Built a non-invasive IR-sensor system on Arduino UNO, capturing 1,000+ pulse datasets and developing C/C++ signal-processing algorithms for feature extraction.", impact:"Achieved >90% diagnostic accuracy and secured an Indian Patent (No. 202321031953, 2023).", tags:["C/C++","Signal Processing","Arduino"], github:"https://github.com/Priyanka5317/" },
   { title:"Sleep Aid Sentiment Analysis", img:"images/sleep.svg", problem:"Sleep aid marketers lacked visibility into what customers actually valued in product reviews.", solution:"Analyzed 10,000+ Walmart reviews with Pandas, n-grams, and TextBlob sentiment scoring, then visualized trends in Power BI.", impact:"Revealed a 15% higher preference for 10mg doses and elevated review insight quality by 40%, guiding marketing strategy.", tags:["Python","NLP","Power BI"], github:"https://github.com/Priyanka5317/" },
-  { title:"LeetCode Solutions", img:"images/leetcode.svg", problem:"Staying sharp on data structures and algorithms requires consistent, deliberate practice.", solution:"Maintaining an ongoing repository of LeetCode solutions, organized by topic and difficulty with clean, documented code.", impact:"Built a durable personal reference of 100+ DSA patterns strengthening technical interview readiness.", tags:["Python","DSA"], github:"https://github.com/Priyanka5317/leetcode" }
 ];
 const grid = document.getElementById('projects-grid');
 projects.forEach((p, i) => {
