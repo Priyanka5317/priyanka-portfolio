@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Priyanka Mangrulkar — AI Engineer · Data Analyst · BI Developer</title>
-<meta name="description" content="Priyanka Mangrulkar — AI Engineer, Data Analyst, Data Engineer, Data Scientist, Business Analyst & BI Developer based in Boston." />
+<title>Priyanka Mangrulkar | AI Engineer · Data Analyst · BI Developer</title>
+<meta name="description" content="Priyanka Mangrulkar: AI Engineer, Data Analyst, Data Engineer, Data Scientist, Business Analyst & BI Developer based in Boston." />
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
 <script type="module">
   import { inject } from 'https://esm.sh/@vercel/analytics';
   inject();
@@ -67,8 +70,24 @@
     background: linear-gradient(180deg, #2350d9, #e10600);
   }
 
-  .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  /* ===== Cinematic scroll reveals ("throw in") ===== */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(48px) scale(0.985);
+    transition: opacity 0.7s cubic-bezier(0.2,0.7,0.2,1),
+                transform 0.9s cubic-bezier(0.34,1.56,0.64,1);
+    will-change: opacity, transform;
+  }
+  .fade-up.fl { transform: translateX(-90px) rotate(-2deg); }
+  .fade-up.fr { transform: translateX(90px) rotate(2deg); }
+  .fade-up.zm { transform: scale(0.45); }
+  .fade-up.tw { transform: perspective(900px) translateY(80px) rotateX(32deg) scale(0.9); transform-origin: bottom center; }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { transition: opacity 0.4s ease; transform: none; }
+    .fade-up.fl, .fade-up.fr, .fade-up.zm, .fade-up.tw { transform: none; }
+  }
 
   .project-card { transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
   .project-card:hover {
@@ -120,12 +139,13 @@
     border: 2px solid #333;
   }
   .light-col { display: flex; flex-direction: column; gap: 8px; }
-  .sl-1 .start-light { animation: lightOn 0.3s 0.5s forwards; }
-  .sl-2 .start-light { animation: lightOn 0.3s 1.5s forwards; }
-  .sl-3 .start-light { animation: lightOn 0.3s 2.5s forwards; }
-  .sl-4 .start-light { animation: lightOn 0.3s 3.5s forwards; }
-  .sl-5 .start-light { animation: lightOn 0.3s 4.5s forwards; }
-  .sl-go .start-light { animation: lightOff 0.1s 5.5s forwards; }
+  /* Start lights stay dark until the intro fires (.intro-go on body) */
+  .intro-go .sl-1 .start-light { animation: lightOn 0.3s 0.2s forwards; }
+  .intro-go .sl-2 .start-light { animation: lightOn 0.3s 0.7s forwards; }
+  .intro-go .sl-3 .start-light { animation: lightOn 0.3s 1.2s forwards; }
+  .intro-go .sl-4 .start-light { animation: lightOn 0.3s 1.7s forwards; }
+  .intro-go .sl-5 .start-light { animation: lightOn 0.3s 2.2s forwards; }
+  .intro-go .sl-go .start-light { animation: lightOff 0.1s 3.0s forwards; }
 
   @keyframes blink { 50% { opacity: 0; } }
   .cursor-blink { animation: blink 1s infinite; }
@@ -347,9 +367,99 @@
   .telem-scroll {
     animation: telemScroll 20s linear infinite;
   }
+
+  /* ===== 3D cinematic background canvas ===== */
+  #bg3d {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;           /* behind all content, above body gradient */
+    pointer-events: none;
+    display: block;
+  }
+  /* Readability scrim: dims the 3D layer so text stays legible.
+     Darker on the left (where copy lives), lighter center-right (car shows through). */
+  #scrim {
+    position: fixed;
+    inset: 0;
+    z-index: -1;           /* above canvas (-1, painted earlier), below content */
+    pointer-events: none;
+    background:
+      linear-gradient(90deg,
+        rgba(6,8,22,0.80) 0%,
+        rgba(6,8,22,0.50) 34%,
+        rgba(6,8,22,0.28) 58%,
+        rgba(6,8,22,0.42) 100%),
+      radial-gradient(135% 95% at 55% 45%, transparent 42%, rgba(6,8,22,0.6) 100%);
+  }
+  /* Hero copy lifts off the moving car with a dark halo for legibility */
+  #home h1 { text-shadow: 0 0 24px rgba(6,8,22,0.98), 0 0 9px rgba(6,8,22,0.96), 0 2px 4px rgba(6,8,22,0.92); }
+  #home p  { text-shadow: 0 0 14px rgba(6,8,22,0.96), 0 1px 3px rgba(6,8,22,0.9); }
+
+  /* ===== Loading screen ===== */
+  #loader {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: radial-gradient(circle at 50% 45%, #0a0f28 0%, #060816 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease;
+  }
+  #loader.hide { opacity: 0; pointer-events: none; }
+  .loader-inner { text-align: center; width: min(78vw, 340px); }
+  .loader-logo {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #2350d9, #e10600);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .loader-bar {
+    height: 3px; width: 100%;
+    background: #161d3a; border-radius: 3px; overflow: hidden;
+  }
+  .loader-bar > span {
+    display: block; height: 100%; width: 35%;
+    background: linear-gradient(90deg, #2350d9, #e10600);
+    border-radius: 3px;
+    animation: loaderSlide 1.1s cubic-bezier(0.6,0,0.4,1) infinite;
+  }
+  @keyframes loaderSlide {
+    0% { transform: translateX(-130%); }
+    100% { transform: translateX(400%); }
+  }
+  .loader-text {
+    margin-top: 16px;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: #7b85a4;
+    text-transform: uppercase;
+  }
+
+  /* Retire the old flat SVG cars, replaced by the real 3D car */
+  .rb22-car { display: none !important; }
+  /* Keep the footer above the fixed canvas */
+  footer { position: relative; z-index: 1; }
 </style>
 </head>
 <body class="antialiased carbon-bg">
+
+<!-- Cinematic 3D Red Bull F1 background -->
+<canvas id="bg3d"></canvas>
+<div id="scrim"></div>
+
+<!-- Loading screen (fades out, then the car drives in) -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo font-race">P.MANGRULKAR</div>
+    <div class="loader-bar"><span></span></div>
+    <div class="loader-text font-mono">LIGHTS OUT AND AWAY WE GO</div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-bg/80 border-b border-border">
@@ -410,7 +520,7 @@
     <div class="streak streak-blue" style="top:85%; animation-delay:4.5s;"></div>
   </div>
 
-  <!-- ===== RB22 #1 — Hero flyby after start lights ===== -->
+  <!-- ===== RB22 #1 : Hero flyby after start lights ===== -->
   <div class="car-track">
     <div class="holo-wrap rb22-car" style="top:70%; width:280px; height:80px; animation: driveRight 8s linear 6s infinite;">
       <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="280" height="80">
@@ -505,7 +615,7 @@
       </h1>
       <p class="text-xl md:text-2xl text-ink mb-2 fade-up font-semibold">AI Engineer · Data Analyst · Data Scientist</p>
       <p class="text-muted mb-1 fade-up font-medium text-sm">Data Engineer · Business Analyst · BI Developer</p>
-      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based engineer at the intersection of AI and data — building intelligent systems, designing pipelines, and turning raw data into actionable insights.</p>
+      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based engineer at the intersection of AI and data, building intelligent systems, designing pipelines, and turning raw data into actionable insights.</p>
 
       <div class="flex flex-wrap gap-2 mb-6 fade-up">
         <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent/10 border border-accent/30 rounded text-xs font-race text-accent tracking-wider">
@@ -587,7 +697,7 @@
     <div class="grid md:grid-cols-3 gap-10 fade-up">
       <div class="md:col-span-2 space-y-4 text-ink/90 leading-relaxed racing-stripe pl-6">
         <p>I'm a data professional passionate about transforming raw, messy data into clear insights that drive real business decisions. Currently pursuing my <span class="text-accent font-semibold">M.S. in Information Systems at Northeastern University</span>, I bridge the gap between engineering rigor and business storytelling.</p>
-        <p>With hands-on experience building ETL pipelines, designing data warehouses, and crafting dashboards in Power BI and Tableau, I enjoy the full analytics lifecycle — from data wrangling and modeling to delivering executive-ready insights.</p>
+        <p>With hands-on experience building ETL pipelines, designing data warehouses, and crafting dashboards in Power BI and Tableau, I enjoy the full analytics lifecycle, from data wrangling and modeling to delivering executive-ready insights.</p>
         <p>Previously, I worked as a <span class="text-accent font-semibold">Data Science Co-op at WhoozCooking</span> and as a Research Analyst at Team Maverick, where I built predictive models and interactive dashboards that improved performance metrics by up to 50%. I also co-built <span class="text-accent font-semibold">SwipeHire.io</span>, an AI-powered recruitment platform. I'm actively seeking full-time roles in <span class="text-accent font-semibold">AI Engineering, Data Analytics, Data Engineering, Data Science, Business Analysis, and BI Development</span>.</p>
       </div>
       <div class="space-y-3 text-sm">
@@ -635,7 +745,7 @@
 <!--  PROJECTS                                 -->
 <!-- ========================================= -->
 <section id="projects" class="py-24 px-6 speed-lines relative">
-  <!-- Primary RB22 — full detail, racing across projects -->
+  <!-- Primary RB22 : full detail, racing across projects -->
   <div class="car-track">
     <div class="holo-wrap rb22-car" style="top:15%; width:280px; height:80px; animation: driveRight 10s linear 0s infinite;">
       <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="280" height="80">
@@ -678,7 +788,7 @@
       </svg>
     </div>
 
-    <!-- Second car — opposite direction -->
+    <!-- Second car : opposite direction -->
     <div class="holo-wrap rb22-car" style="top:78%; width:240px; height:70px; animation: driveLeft 13s linear 5s infinite; opacity:0.4;">
       <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="240" height="70">
         <defs>
@@ -800,7 +910,7 @@
 <section id="contact" class="py-32 px-6 text-center relative">
   <div class="checkered absolute inset-0 opacity-10"></div>
 
-  <!-- Victory lap — fastest car, full detail -->
+  <!-- Victory lap : fastest car, full detail -->
   <div class="car-track">
     <div class="holo-wrap rb22-car" style="top:22%; width:280px; height:80px; animation: driveRight 7s linear 0s infinite;">
       <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" width="280" height="80">
@@ -844,7 +954,7 @@
   <div class="max-w-2xl mx-auto relative z-10">
     <p class="font-race text-accent text-xs tracking-[0.3em] mb-4 fade-up uppercase">// Finish Line</p>
     <h2 class="text-4xl md:text-5xl font-race font-black mb-6 fade-up text-white">LET'S <span class="text-accent glow-blue">CONNECT</span></h2>
-    <p class="text-muted mb-10 fade-up">I'm currently looking for full-time opportunities in AI Engineering, Data Analytics, Data Engineering, Data Science, Business Analysis, and BI. I'd love to hear from you — feel free to reach out!</p>
+    <p class="text-muted mb-10 fade-up">I'm currently looking for full-time opportunities in AI Engineering, Data Analytics, Data Engineering, Data Science, Business Analysis, and BI. I'd love to hear from you. Feel free to reach out!</p>
     <div class="flex flex-wrap justify-center gap-4 fade-up">
       <a href="mailto:mangrulkarp@northeastern.edu" class="px-6 py-3 bg-accent text-white font-race font-bold text-sm tracking-wider rounded hover:bg-white hover:text-bg transition uppercase">Email Me</a>
       <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="px-6 py-3 border border-border bg-card rounded hover:border-accent transition font-mono text-sm uppercase tracking-wider">LinkedIn</a>
@@ -861,14 +971,14 @@
 // ============ TIMELINE ============
 const timeline = [
   { side:'right', date:'May 2026', title:'M.S. Information Systems', org:'Northeastern University · Boston, MA', type:'education', desc:'Data Management, Database Design, Data Structures, Data Science with Python.' },
-  { side:'left', date:'May 2025 — Dec 2025', title:'Data Science Co-op', org:'WhoozCooking · Boston, MA', type:'work', desc:'Built ETL pipelines (Python, AWS Glue, Airflow), Redshift star schemas, and Power BI dashboards tracking retention, onboarding, and KPIs. Ran A/B tests and churn analysis.' },
-  { side:'right', date:'Aug 2019 — Aug 2023', title:'B.E. Electronics & Telecommunication', org:'Savitribai Phule Pune University · India', type:'education', desc:'Patent: "Pulse Diagnosis System for Chronic Diseases" (India, 2023).' },
-  { side:'left', date:'Apr 2021 — Apr 2022', title:'Research Analyst', org:'Team Maverick · Pune, India', type:'work', desc:'Improved avionics accuracy by 20% analyzing telemetry with Python & MATLAB. Built predictive models and Tableau dashboards for system diagnostics.' },
+  { side:'left', date:'May 2025 - Dec 2025', title:'Data Science Co-op', org:'WhoozCooking · Boston, MA', type:'work', desc:'Built ETL pipelines (Python, AWS Glue, Airflow), Redshift star schemas, and Power BI dashboards tracking retention, onboarding, and KPIs. Ran A/B tests and churn analysis.' },
+  { side:'right', date:'Aug 2019 - Aug 2023', title:'B.E. Electronics & Telecommunication', org:'Savitribai Phule Pune University · India', type:'education', desc:'Patent: "Pulse Diagnosis System for Chronic Diseases" (India, 2023).' },
+  { side:'left', date:'Apr 2021 - Apr 2022', title:'Research Analyst', org:'Team Maverick · Pune, India', type:'work', desc:'Improved avionics accuracy by 20% analyzing telemetry with Python & MATLAB. Built predictive models and Tableau dashboards for system diagnostics.' },
 ];
 const tl = document.getElementById('timeline');
 timeline.forEach((item, i) => {
   const div = document.createElement('div');
-  div.className = `tl-item ${item.side} fade-up`;
+  div.className = `tl-item ${item.side} fade-up ${item.side === 'left' ? 'fl' : 'fr'}`;
   const icon = item.type === 'work'
     ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>'
     : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>';
@@ -889,12 +999,12 @@ timeline.forEach((item, i) => {
 
 // ============ PROJECTS (no LeetCode) ============
 const projects = [
-  { title:"SwipeHire.io", img:"images/swipehire.svg", problem:"Traditional job boards overwhelm candidates with irrelevant listings, while recruiters waste hours sifting through unqualified applications.", solution:"Co-built an AI-powered recruitment platform with swipe-based matching — candidates swipe through curated job cards powered by intelligent algorithms that learn from every interaction.", impact:"Created a streamlined hiring experience that connects talent with opportunities faster, reducing time-to-match for both candidates and employers.", tags:["AI/ML","Full-Stack","Product"], github:"https://swipehire.io" },
+  { title:"SwipeHire.io", img:"images/swipehire.svg", problem:"Traditional job boards overwhelm candidates with irrelevant listings, while recruiters waste hours sifting through unqualified applications.", solution:"Co-built an AI-powered recruitment platform with swipe-based matching: candidates swipe through curated job cards powered by intelligent algorithms that learn from every interaction.", impact:"Created a streamlined hiring experience that connects talent with opportunities faster, reducing time-to-match for both candidates and employers.", tags:["AI/ML","Full-Stack","Product"], github:"https://swipehire.io" },
   { title:"PodcastIQ", img:"images/podcastiq.svg", problem:"Podcast platforms struggle to understand why listeners drop off or which episodes drive engagement.", solution:"Built an analytics pipeline ingesting listening data, applying NLP to transcripts, and surfacing engagement signals through interactive dashboards.", impact:"Surfaced episode-level retention insights that can inform content and recommendation strategy.", tags:["Python","NLP","Analytics"], github:"https://github.com/Priyanka5317/PodcastIQ" },
   { title:"WhoozCooking API", img:"images/whoozcooking.svg", problem:"Analytics and product teams lacked a unified backend for querying user, onboarding, and engagement data.", solution:"Engineered a Python-based API and ETL workflows feeding a Redshift warehouse, exposing clean endpoints for dashboards and reporting.", impact:"Reduced data processing time by 50% and unlocked faster, self-serve analytics across the organization.", tags:["Python","API","ETL","AWS"], github:"https://github.com/Priyanka5317/WhoozCookingAPI" },
-  { title:"F1 Tire Strategy Analysis", img:"images/f1.svg", problem:"F1 race teams need to balance grip vs. durability — a wrong tire call can cost the race.", solution:"Built an R Shiny app merging lap and weather data, applying Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.", impact:"Improved pit strategy success rate by 25% and enabled real-time tactical decisions through interactive simulation.", tags:["R","Shiny","Survival Analysis"], github:"https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing" },
+  { title:"F1 Tire Strategy Analysis", img:"images/f1.svg", problem:"F1 race teams need to balance grip vs. durability: a wrong tire call can cost the race.", solution:"Built an R Shiny app merging lap and weather data, applying Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.", impact:"Improved pit strategy success rate by 25% and enabled real-time tactical decisions through interactive simulation.", tags:["R","Shiny","Survival Analysis"], github:"https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing" },
   { title:"Employee Retention Analysis", img:"images/employee.svg", problem:"HR teams lacked early warning signals for attrition across tenure and departments.", solution:"Wrote nested SQL queries and CTEs to uncover churn patterns, built stored procedures for ongoing monitoring, and designed dashboards for HR stakeholders.", impact:"Improved early-warning attrition signals by 20%, enabling targeted retention interventions.", tags:["SQL","HR Analytics","Dashboards"], github:"https://github.com/Priyanka5317/Employee-Analysis" },
-  { title:"E-Commerce Database & Analytics", img:"images/ecommerce.svg", problem:"An e-commerce dataset had slow queries and no real-time reporting for sales and inventory.", solution:"Designed a 15+ table normalized MySQL warehouse with indexing, partitioning, triggers, and stored procedures — connected to Power BI dashboards.", impact:"Optimized queries by 50% and boosted reporting efficiency by 25%, powering real-time revenue and inventory insights.", tags:["MySQL","Power BI","ETL"], github:"https://github.com/Priyanka5317/" },
+  { title:"E-Commerce Database & Analytics", img:"images/ecommerce.svg", problem:"An e-commerce dataset had slow queries and no real-time reporting for sales and inventory.", solution:"Designed a 15+ table normalized MySQL warehouse with indexing, partitioning, triggers, and stored procedures, connected to Power BI dashboards.", impact:"Optimized queries by 50% and boosted reporting efficiency by 25%, powering real-time revenue and inventory insights.", tags:["MySQL","Power BI","ETL"], github:"https://github.com/Priyanka5317/" },
   { title:"Pulse Diagnosis System (Patent)", img:"images/pulse.svg", problem:"Early detection of chronic diseases often requires expensive, invasive testing.", solution:"Built a non-invasive IR-sensor system on Arduino UNO, capturing 1,000+ pulse datasets and developing C/C++ signal-processing algorithms for feature extraction.", impact:"Achieved >90% diagnostic accuracy and secured an Indian Patent (No. 202321031953, 2023).", tags:["C/C++","Signal Processing","Arduino"], github:"https://github.com/Priyanka5317/" },
   { title:"Sleep Aid Sentiment Analysis", img:"images/sleep.svg", problem:"Sleep aid marketers lacked visibility into what customers actually valued in product reviews.", solution:"Analyzed 10,000+ Walmart reviews with Pandas, n-grams, and TextBlob sentiment scoring, then visualized trends in Power BI.", impact:"Revealed a 15% higher preference for 10mg doses and elevated review insight quality by 40%, guiding marketing strategy.", tags:["Python","NLP","Power BI"], github:"https://github.com/Priyanka5317/" },
 ];
@@ -903,7 +1013,8 @@ projects.forEach((p, i) => {
   const el = document.createElement('a');
   el.href = p.github;
   el.target = '_blank';
-  el.className = 'project-card fade-up block bg-card border border-border rounded-lg overflow-hidden';
+  el.className = 'project-card fade-up tw block bg-card border border-border rounded-lg overflow-hidden';
+  el.style.transitionDelay = (i % 2) * 0.12 + 's';
   el.innerHTML = `
     <div class="aspect-[400/220] bg-navy overflow-hidden border-b border-border relative">
       <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover"/>
@@ -946,7 +1057,8 @@ const certs = [
 const certsGrid = document.getElementById('certs-grid');
 certs.forEach((c, i) => {
   const div = document.createElement('div');
-  div.className = 'p-6 bg-card border border-border rounded-lg hover:border-accent/50 transition group racing-stripe pl-8';
+  div.className = 'fade-up tw p-6 bg-card border border-border rounded-lg hover:border-accent/50 transition group racing-stripe pl-8';
+  div.style.transitionDelay = (i * 0.1) + 's';
   div.innerHTML = `
     <div class="font-race text-accent2 text-[0.55rem] tracking-[0.3em] mb-3">CERTIFIED</div>
     <h3 class="font-bold text-white mb-1 text-sm">${c.title}</h3>
@@ -965,9 +1077,10 @@ const skills = {
 };
 Object.entries(skills).forEach(([k, arr]) => {
   const c = document.getElementById('skills-' + k);
-  arr.forEach(s => {
+  arr.forEach((s, i) => {
     const span = document.createElement('span');
-    span.className = 'skill-pill px-3 py-1.5 bg-card border border-border rounded text-xs text-ink cursor-default font-mono tracking-wide';
+    span.className = 'skill-pill fade-up zm px-3 py-1.5 bg-card border border-border rounded text-xs text-ink cursor-default font-mono tracking-wide';
+    span.style.transitionDelay = (i * 0.05) + 's';
     span.textContent = s;
     c.appendChild(span);
   });
@@ -979,7 +1092,362 @@ const observer = new IntersectionObserver((entries) => {
     if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
   });
 }, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+// Hero elements are held back so they can reveal during the cinematic intro.
+document.querySelectorAll('.fade-up').forEach(el => { if (!el.closest('#home')) observer.observe(el); });
+
+// ===== Intro orchestration hooks (driven by the 3D scene; safe fallbacks below) =====
+window.__heroRevealed = false;
+window.revealHero = function () {
+  if (window.__heroRevealed) return;
+  window.__heroRevealed = true;
+  document.querySelectorAll('#home .fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.07) + 's';
+    el.classList.add('visible');
+  });
+};
+window.startLights = function () { document.body.classList.add('intro-go'); };
+window.hideLoader = function () {
+  const l = document.getElementById('loader');
+  if (!l || l.classList.contains('hide')) return;
+  l.classList.add('hide');
+  setTimeout(() => { l.style.display = 'none'; }, 900);
+};
+// Safety net: if WebGL never initializes, don't leave the page stuck on the loader.
+setTimeout(() => { window.hideLoader(); window.startLights(); window.revealHero(); }, 6000);
+</script>
+
+<!-- ============================================================ -->
+<!--  CINEMATIC 3D RED BULL F1 CAR (Three.js)                     -->
+<!-- ============================================================ -->
+<script>
+(function () {
+  if (typeof THREE === 'undefined') return;
+  const canvas = document.getElementById('bg3d');
+  if (!canvas) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const W = () => window.innerWidth, H = () => window.innerHeight;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+  renderer.setSize(W(), H());
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.autoUpdate = false;   // render shadows on demand, not every frame
+  renderer.shadowMap.needsUpdate = true;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x060816, 0.05);
+
+  // ---- Studio environment map (for realistic glossy car paint reflections) ----
+  function buildEnvScene() {
+    const s = new THREE.Scene();
+    s.add(new THREE.Mesh(new THREE.BoxGeometry(60, 60, 60),
+      new THREE.MeshBasicMaterial({ color: 0x0a1030, side: THREE.BackSide })));
+    const panel = (w, h, x, y, z, rx, ry, color) => {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color }));
+      m.position.set(x, y, z); m.rotation.set(rx, ry, 0); s.add(m);
+    };
+    panel(34, 34, 0, 26, 0, Math.PI / 2, 0, 0xffffff);    // ceiling softbox
+    panel(10, 40, -16, 8, 0, 0, Math.PI / 2, 0xeaf0ff);   // left softbox
+    panel(10, 40, 16, 8, 0, 0, -Math.PI / 2, 0xc8d4ff);   // right softbox
+    panel(6, 24, 0, 6, -22, 0, 0, 0x2350d9);              // blue accent glint
+    panel(6, 24, 8, 4, 22, 0, Math.PI, 0xe10600);         // red accent glint
+    return s;
+  }
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  pmrem.compileEquirectangularShader();
+  const envRT = pmrem.fromScene(buildEnvScene(), 0.04);
+  scene.environment = envRT.texture;
+
+  const camera = new THREE.PerspectiveCamera(40, W() / H(), 0.1, 200);
+  camera.position.set(6.4, 2.5, 7.2);
+  camera.lookAt(0, 0.7, 0);
+
+  // ---- Lights ----
+  scene.add(new THREE.HemisphereLight(0x8da7ff, 0x05060f, 0.55));
+  const key = new THREE.DirectionalLight(0xffffff, 1.2);
+  key.position.set(8, 13, 6);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  key.shadow.camera.near = 1; key.shadow.camera.far = 45;
+  key.shadow.camera.left = -12; key.shadow.camera.right = 12;
+  key.shadow.camera.top = 12; key.shadow.camera.bottom = -12;
+  scene.add(key);
+  const bluLight = new THREE.PointLight(0x2350d9, 1.6, 32); bluLight.position.set(-4, 2.4, 4.5); scene.add(bluLight);
+  const redLight = new THREE.PointLight(0xe10600, 1.3, 30); redLight.position.set(4.5, 1.6, -4); scene.add(redLight);
+
+  // ---- Race-track ground (streams toward viewer) ----
+  const gcan = document.createElement('canvas'); gcan.width = gcan.height = 256;
+  const gx = gcan.getContext('2d');
+  gx.fillStyle = '#070b1c'; gx.fillRect(0, 0, 256, 256);
+  gx.strokeStyle = 'rgba(35,80,217,0.55)'; gx.lineWidth = 5;
+  gx.beginPath(); gx.moveTo(128, 0); gx.lineTo(128, 256); gx.stroke();
+  gx.strokeStyle = 'rgba(35,80,217,0.16)'; gx.lineWidth = 2;
+  for (let i = 0; i <= 256; i += 32) { gx.beginPath(); gx.moveTo(0, i); gx.lineTo(256, i); gx.stroke(); }
+  const gtex = new THREE.CanvasTexture(gcan);
+  gtex.wrapS = gtex.wrapT = THREE.RepeatWrapping; gtex.repeat.set(6, 22);
+  const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(60, 280),
+    new THREE.MeshStandardMaterial({ map: gtex, roughness: 0.85, metalness: 0.1, color: 0x4a5a8a })
+  );
+  ground.rotation.x = -Math.PI / 2;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  // ---- Materials (Red Bull RB livery) ----
+  const mat = (c, m, r, e) => new THREE.MeshStandardMaterial({ color: c, metalness: m, roughness: r, emissive: e || 0x000000 });
+  const mNavy   = mat(0x0a1a4d, 0.45, 0.4);
+  const mNavyD  = mat(0x070f33, 0.4, 0.55);
+  const mRed    = mat(0xe10600, 0.3, 0.45, 0x3a0000);
+  const mYellow = mat(0xf5c518, 0.4, 0.4, 0x241a00);
+  const mCarbon = mat(0x0b0e1f, 0.3, 0.7);
+  const mChrome = mat(0x5a606e, 0.85, 0.3);
+  const mTire   = mat(0x0a0a0a, 0.1, 0.9);
+
+  // ---- Build the car (drives along +X, nose at +X) ----
+  const car = new THREE.Group();
+  function box(w, h, d, x, y, z, m) {
+    const me = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m);
+    me.position.set(x, y, z); me.castShadow = true; car.add(me); return me;
+  }
+  box(4.7, 0.12, 1.0, 0, 0.22, 0, mCarbon);              // floor / plank
+  box(2.4, 0.5, 0.78, 0.1, 0.5, 0, mNavy);               // survival cell
+  box(2.0, 0.45, 0.55, -1.1, 0.55, 0, mNavy);            // engine cover
+  box(0.55, 0.5, 0.42, -0.4, 0.92, 0, mNavyD);           // airbox
+  box(1.6, 0.28, 0.4, 1.95, 0.42, 0, mNavy);             // nose
+  box(0.55, 0.22, 0.34, 2.75, 0.4, 0, mYellow);          // nose tip (yellow)
+  box(1.5, 0.42, 0.34, -0.5, 0.42, 0.46, mNavyD);        // sidepod R
+  box(1.5, 0.42, 0.34, -0.5, 0.42, -0.46, mNavyD);       // sidepod L
+  box(2.2, 0.06, 0.5, 0, 0.78, 0, mRed);                 // top red stripe
+  box(2.0, 0.18, 0.02, 0, 0.5, 0.4, mRed);               // side red R
+  box(2.0, 0.18, 0.02, 0, 0.5, -0.4, mRed);              // side red L
+  box(0.7, 0.3, 0.5, 0.5, 0.74, 0, mCarbon);             // cockpit opening
+  // front wing
+  box(0.6, 0.06, 2.1, 2.55, 0.16, 0, mNavyD);
+  box(0.55, 0.05, 2.0, 2.55, 0.21, 0, mRed);
+  box(0.5, 0.32, 0.06, 2.55, 0.3, 1.02, mNavy);
+  box(0.5, 0.32, 0.06, 2.55, 0.3, -1.02, mNavy);
+  // rear wing
+  box(0.5, 0.06, 1.6, -2.25, 1.18, 0, mNavyD);
+  box(0.5, 0.06, 1.5, -2.25, 1.07, 0, mRed);
+  box(0.45, 0.55, 0.05, -2.25, 0.98, 0.8, mNavy);
+  box(0.45, 0.55, 0.05, -2.25, 0.98, -0.8, mNavy);
+  box(0.4, 0.05, 1.4, -2.2, 0.62, 0, mNavyD);            // beam wing
+  box(0.12, 0.5, 0.06, -2.15, 0.86, 0, mCarbon);         // DRS pylon
+
+  // halo
+  const halo = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.045, 8, 24, Math.PI), mChrome);
+  halo.rotation.x = Math.PI / 2;
+  halo.position.set(0.5, 0.72, 0);
+  halo.castShadow = true;
+  car.add(halo);
+  box(0.06, 0.3, 0.06, 0.86, 0.78, 0, mChrome);          // halo front strut
+
+  // wheels (spin about lateral Z axis)
+  const wheels = [];
+  function wheel(x, z, rad, wid) {
+    const g = new THREE.Group();
+    g.position.set(x, rad, z);
+    const tire = new THREE.Mesh(new THREE.CylinderGeometry(rad, rad, wid, 24), mTire);
+    tire.rotation.x = Math.PI / 2; tire.castShadow = true; g.add(tire);
+    const rim = new THREE.Mesh(new THREE.CylinderGeometry(rad * 0.55, rad * 0.55, wid + 0.02, 16), mChrome);
+    rim.rotation.x = Math.PI / 2; g.add(rim);
+    car.add(g); wheels.push(g);
+  }
+  wheel(1.7, 0.62, 0.46, 0.34); wheel(1.7, -0.62, 0.46, 0.34);
+  wheel(-1.55, 0.68, 0.5, 0.46); wheel(-1.55, -0.68, 0.5, 0.46);
+
+  const baseYaw = -0.12; // slight 3/4 angle toward camera
+  car.rotation.y = baseYaw;
+  scene.add(car);
+
+  // ============================================================
+  //  REAL RB22 MODEL LOADER
+  //  Drop your downloaded car here:  models/rb22.glb
+  //  (glTF Binary .glb. If it has Draco compression, that's handled.)
+  // ============================================================
+  // Tries each path in order, works whether you saved a single .glb
+  // or extracted a Sketchfab glTF zip into models/rb22/
+  const MODEL_PATHS = ['models/rb22.glb', 'models/rb22/scene.gltf', 'models/scene.gltf', 'models/rb22.gltf'];
+  const TARGET_LENGTH = 5.0;   // world units the car is scaled to
+  const carHolder = new THREE.Group();
+  carHolder.rotation.y = baseYaw;
+  scene.add(carHolder);
+  let modelLoaded = false;
+  const modelWheels = [];
+
+  const gltfLoader = new THREE.GLTFLoader();
+  if (THREE.DRACOLoader) {
+    const draco = new THREE.DRACOLoader();
+    draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+    gltfLoader.setDRACOLoader(draco);
+  }
+  function onModel(gltf) {
+    const m = gltf.scene;
+    m.traverse((o) => {
+      if (o.isMesh) {
+        o.castShadow = true; o.receiveShadow = true;
+        if (o.material) { o.material.envMapIntensity = 1.25; o.material.needsUpdate = true; }
+        if (/wheel|tyre|tire|rim/i.test(o.name)) modelWheels.push(o);
+      }
+    });
+    // auto-fit: scale to target length, recenter, sit on the ground
+    let box = new THREE.Box3().setFromObject(m);
+    const size = new THREE.Vector3(); box.getSize(size);
+    const footprint = Math.max(size.x, size.z) || 1;
+    m.scale.setScalar(TARGET_LENGTH / footprint);
+    box = new THREE.Box3().setFromObject(m);
+    const c = new THREE.Vector3(); box.getCenter(c);
+    m.position.x -= c.x; m.position.z -= c.z; m.position.y -= box.min.y;
+    // orient so the long axis runs along X (driving direction)
+    if (size.z > size.x) m.rotation.y += Math.PI / 2;
+    carHolder.add(m);
+    modelLoaded = true;
+    car.visible = false; // retire the fallback once the real car is in
+    console.log('[RB22] Real model loaded.');
+    startIntro();
+  }
+  function tryLoad(i) {
+    if (i >= MODEL_PATHS.length) {
+      console.warn('[RB22] No model found yet. Showing the built-in car. Save your download under models/ (rb22.glb or extract the glTF zip into models/rb22/).');
+      startIntro(); // run the intro with the built-in car
+      return;
+    }
+    gltfLoader.load(MODEL_PATHS[i], onModel, undefined, () => tryLoad(i + 1));
+  }
+  tryLoad(0);
+  setTimeout(startIntro, 6500); // safety: never stall the intro on a slow model
+
+  // ---- Speed streaks ----
+  const sMatBlue = new THREE.MeshBasicMaterial({ color: 0x6f9bff, transparent: true, opacity: 0.45, blending: THREE.AdditiveBlending });
+  const sMatRed  = new THREE.MeshBasicMaterial({ color: 0xff5a4d, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
+  const streaks = [];
+  function resetStreak(s, init) {
+    s.position.set((init ? Math.random() * 36 - 8 : 16 + Math.random() * 16),
+      0.3 + Math.random() * 4.5, -7 + Math.random() * 14);
+  }
+  for (let i = 0; i < 22; i++) {
+    const s = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.02, 0.02), Math.random() < 0.3 ? sMatRed : sMatBlue);
+    resetStreak(s, true); scene.add(s); streaks.push(s);
+  }
+
+  // ---- Scroll = throttle ----
+  let speed = 0.6, targetSpeed = 0.6, lastScroll = window.scrollY || 0;
+  window.addEventListener('scroll', () => {
+    const cur = window.scrollY || 0;
+    const dv = Math.min(Math.abs(cur - lastScroll), 140);
+    targetSpeed = 0.6 + dv * 0.045;
+    lastScroll = cur;
+  }, { passive: true });
+
+  // ---- Resize ----
+  function resize() {
+    const w = window.innerWidth || document.documentElement.clientWidth || 1;
+    const h = window.innerHeight || document.documentElement.clientHeight || 1;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(resize);   // catch layout that isn't settled at init
+  window.addEventListener('load', resize);
+
+  // ---- Cinematic intro: car spins through the screen, then settles onto the track ----
+  let introState = 'wait';   // 'wait' -> 'run' -> 'done'
+  let introT = 0;
+  const INTRO_DUR = 3.4;
+  const camStart = new THREE.Vector3(0.6, 1.1, 2.7);   // close-up, car fills the frame
+  const camRest  = new THREE.Vector3(6.4, 2.5, 7.2);   // resting 3/4 background view
+  function startIntro() {
+    if (introState !== 'wait') return;
+    if (reduce) {                                       // accessibility: no motion
+      introState = 'done';
+      camera.position.copy(camRest); camera.lookAt(0, 0.7, 0);
+      if (window.hideLoader) window.hideLoader();
+      if (window.startLights) window.startLights();
+      if (window.revealHero) window.revealHero();
+      renderer.render(scene, camera);
+      return;
+    }
+    introState = 'run';
+    introT = 0;
+    renderer.shadowMap.autoUpdate = true;               // live shadow during the entrance
+    if (window.hideLoader) window.hideLoader();
+    if (window.startLights) window.startLights();
+  }
+
+  // ---- Render loop ----
+  const clock = new THREE.Clock();
+  let t = 0, running = true;
+  document.addEventListener('visibilitychange', () => {
+    running = !document.hidden;
+    if (running && !reduce) { clock.getDelta(); animate(); }
+  });
+
+  function animate() {
+    if (!running) return;
+    if (!reduce) requestAnimationFrame(animate);
+    const dt = Math.min(clock.getDelta(), 0.05);
+    t += dt;
+
+    targetSpeed *= 0.93;
+    if (targetSpeed < 0.6) targetSpeed = 0.6;       // idle cruise
+    speed += (targetSpeed - speed) * 0.08;
+    gtex.offset.y += speed * dt * 1.1;
+
+    const active = modelLoaded ? carHolder : car;
+
+    if (introState === 'run') {
+      introT += dt;
+      const p = Math.min(introT / INTRO_DUR, 1);
+      const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; // easeInOutCubic
+      camera.position.lerpVectors(camStart, camRest, e);
+      camera.lookAt(0, 0.7, 0);
+      active.rotation.y = baseYaw + (1 - e) * Math.PI * 3;  // 1.5 spins, then settle
+      active.rotation.z = 0;
+      active.position.y = (1 - e) * 0.5;                    // drops onto the track
+      active.scale.setScalar(1 + (1 - e) * 0.7);            // pops toward the viewer
+      if (p > 0.4 && window.revealHero) window.revealHero();
+      if (p >= 1) {
+        introState = 'done';
+        active.scale.setScalar(1);
+        renderer.shadowMap.autoUpdate = false;
+        renderer.shadowMap.needsUpdate = true;              // freeze shadow for perf
+      }
+    } else if (introState === 'done') {
+      active.position.y = Math.sin(t * 2.2) * 0.04;
+      active.rotation.z = Math.sin(t * 1.3) * 0.012;
+      active.rotation.y = baseYaw + Math.sin(t * 0.5) * 0.04;
+      camera.position.x = 6.4 + Math.sin(t * 0.25) * 0.7;
+      camera.position.y = 2.5 + Math.sin(t * 0.4) * 0.18;
+      camera.position.z = 7.2 + Math.cos(t * 0.2) * 0.5;
+      camera.lookAt(0, 0.7, 0);
+    }
+
+    // wheels always roll
+    if (modelLoaded) modelWheels.forEach(w => { w.rotation.x -= speed * dt * 7; });
+    else wheels.forEach(w => { w.rotation.z -= speed * dt * 7; });
+
+    const sv = speed * 9;
+    for (const s of streaks) {
+      s.position.x -= sv * dt;
+      if (s.position.x < -16) resetStreak(s, false);
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  if (reduce) {
+    renderer.render(scene, camera); // initial static frame; startIntro() finalizes on load
+  } else {
+    animate();
+  }
+})();
 </script>
 </body>
 </html>

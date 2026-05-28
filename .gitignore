@@ -1,0 +1,5 @@
+# Keep the heavy original model out of git (only the optimized 1.7MB rb22.glb ships)
+models/rb22.source.glb
+
+# Local Claude Code tooling / preview config (not needed for the live site)
+.claude/
