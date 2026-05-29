@@ -615,15 +615,15 @@
       </h1>
       <p class="text-xl md:text-2xl text-ink mb-2 fade-up font-semibold">AI Engineer · Data Analyst · Data Scientist</p>
       <p class="text-muted mb-1 fade-up font-medium text-sm">Data Engineer · Business Analyst · BI Developer</p>
-      <p class="text-muted mb-4 fade-up max-w-xl mt-3">Boston-based engineer at the intersection of AI and data, building intelligent systems, designing pipelines, and turning raw data into actionable insights.</p>
+      <p class="text-ink/95 mb-4 fade-up max-w-xl mt-3" style="text-shadow:0 1px 14px rgba(6,8,22,0.95), 0 0 4px rgba(6,8,22,0.9);">Boston-based engineer at the intersection of AI and data, building intelligent systems, designing pipelines, and turning raw data into actionable insights.</p>
 
       <div class="flex flex-wrap gap-2 mb-6 fade-up">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent/10 border border-accent/30 rounded text-xs font-race text-accent tracking-wider">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-race font-bold tracking-wider" style="color:#ffd524; background:rgba(245,197,24,0.12); border:1px solid rgba(245,197,24,0.55); box-shadow:0 0 18px rgba(245,197,24,0.35);">
           <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
           ANTHROPIC CERTIFIED
         </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-500/10 border border-green-500/30 rounded text-xs font-race text-green-400 tracking-wider">
-          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse inline-block"></span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-race font-bold tracking-wider" style="color:#4ade80; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.55); box-shadow:0 0 18px rgba(34,197,94,0.35);">
+          <span class="w-2 h-2 rounded-full animate-pulse inline-block" style="background:#22c55e;"></span>
           OPEN TO WORK
         </span>
       </div>
@@ -1336,11 +1336,11 @@ setTimeout(() => { window.hideLoader(); window.startLights(); window.revealHero(
   }
 
   // ---- Scroll = throttle ----
-  let speed = 0.6, targetSpeed = 0.6, lastScroll = window.scrollY || 0;
+  let speed = 0.32, targetSpeed = 0.32, lastScroll = window.scrollY || 0;
   window.addEventListener('scroll', () => {
     const cur = window.scrollY || 0;
     const dv = Math.min(Math.abs(cur - lastScroll), 140);
-    targetSpeed = 0.6 + dv * 0.045;
+    targetSpeed = 0.32 + dv * 0.035;
     lastScroll = cur;
   }, { passive: true });
 
@@ -1396,7 +1396,7 @@ setTimeout(() => { window.hideLoader(); window.startLights(); window.revealHero(
     t += dt;
 
     targetSpeed *= 0.93;
-    if (targetSpeed < 0.6) targetSpeed = 0.6;       // idle cruise
+    if (targetSpeed < 0.32) targetSpeed = 0.32;     // idle cruise (calm background pace)
     speed += (targetSpeed - speed) * 0.08;
     gtex.offset.y += speed * dt * 1.1;
 
